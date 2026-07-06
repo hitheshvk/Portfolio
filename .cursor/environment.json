@@ -1,0 +1,18 @@
+{
+  "$schema": "https://cursor.com/schemas/environment.schema.json",
+  "name": "portfolio-preview",
+  "install": "echo \"No dependency install required for static HTML preview.\"",
+  "ports": [
+    {
+      "name": "diagnostics-preview",
+      "port": 8000
+    }
+  ],
+  "terminals": [
+    {
+      "name": "preview-server",
+      "command": "python3 -m http.server 8000",
+      "description": "Serves repository files for in-app diagnostics preview."
+    }
+  ]
+}
