@@ -9,8 +9,9 @@ This repository now includes a built-in preview workflow so you can run and view
 1. Open Command Palette (`Ctrl/Cmd + Shift + P`)
 2. Run: `Tasks: Run Task`
 3. Select: **Preview: Start diagnostics local server**
-4. Open Command Palette again and run: **Simple Browser: Show**
-5. Paste: `http://localhost:8000/diagnostics-v5.html`
+4. Cursor should auto-forward port `8000` and open an in-app preview tab.
+5. If it does not auto-open, run **Simple Browser: Show** and paste:
+   `http://localhost:8000/diagnostics-v5.html`
 
 ### Option 2: Run script manually
 

@@ -1,0 +1,10 @@
+{
+  "remote.autoForwardPorts": true,
+  "remote.portsAttributes": {
+    "8000": {
+      "label": "Diagnostics Preview",
+      "onAutoForward": "openPreview",
+      "protocol": "http"
+    }
+  }
+}
