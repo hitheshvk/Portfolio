@@ -9,8 +9,157 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&family=Vollkorn:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles.css" />
   <style>
+    /* Base system (embedded for standalone local preview) */
+    :root {
+      --paper: #f7f3e9;
+      --paper-deep: #ece8dc;
+      --ink: #181513;
+      --ink-soft: #5d5550;
+      --blueprint: #2d4ea1;
+      --hairline: rgba(24, 21, 19, 0.18);
+      --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --serif: "Vollkorn", Georgia, "Times New Roman", serif;
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 24px;
+      --sp-6: 32px;
+      --sp-7: 48px;
+      --sp-8: 72px;
+      --sp-9: 112px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; background: var(--paper); }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.55;
+      text-wrap: pretty;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: var(--blueprint); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 2px; }
+    img { display: block; max-width: 100%; height: auto; }
+    figure { margin: 0; }
+
+    .container {
+      width: min(1100px, calc(100vw - 48px));
+      margin: 0 auto;
+      padding-bottom: var(--sp-8);
+    }
+
+    .siteheader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--sp-5);
+      padding: var(--sp-5) 0 var(--sp-3);
+      border-bottom: 1px solid var(--hairline);
+      margin-bottom: var(--sp-3);
+    }
+    .siteheader .name a {
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .siteheader nav {
+      display: flex;
+      gap: var(--sp-4);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    .siteheader nav a { color: var(--ink-soft); text-transform: uppercase; }
+    .siteheader nav a:hover { color: var(--ink); text-decoration: none; }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: var(--sp-4) 0 var(--sp-5);
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+    .back::before { content: "←"; }
+    .back:hover { color: var(--ink); text-decoration: none; }
+
+    .study-hero {
+      margin: var(--sp-3) 0 var(--sp-7);
+      position: relative;
+      overflow: hidden;
+      background: var(--paper-deep);
+      border: 1px solid var(--hairline);
+    }
+    .study-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .study-hero .credit {
+      position: absolute;
+      right: var(--sp-3);
+      bottom: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      color: var(--ink-soft);
+    }
+
+    .mark {
+      width: 56px;
+      border-top: 2px solid var(--blueprint);
+      margin: var(--sp-8) 0 var(--sp-5);
+    }
+
+    .nextstudy {
+      margin: var(--sp-6) 0 var(--sp-8);
+      padding-top: var(--sp-5);
+      border-top: 1px solid var(--hairline);
+      max-width: 760px;
+    }
+    .nextstudy .label {
+      display: inline-block;
+      color: var(--ink-soft);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-2);
+    }
+    .nextstudy a {
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(23px, 2.8vw, 30px);
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .sitefooter {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--sp-3);
+      padding-top: var(--sp-4);
+      border-top: 1px solid var(--hairline);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(1100px, calc(100vw - 28px)); }
+      .siteheader { flex-wrap: wrap; }
+      .siteheader .name a { font-size: 19px; }
+      .sitefooter { flex-direction: column; }
+    }
+
     /* v5 — written from the actual account, honest scope */
 
     .study-title h1 {
@@ -1260,8 +1409,6 @@
   </footer>
 
 </div>
-
-<script src="../scripts/cursor.js" defer></script>
 
 </body>
 </html>
