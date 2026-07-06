@@ -1,0 +1,17 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Preview: Start diagnostics local server",
+      "type": "shell",
+      "command": "bash \"${workspaceFolder}/scripts/preview-diagnostics.sh\"",
+      "problemMatcher": []
+    },
+    {
+      "label": "Preview: Stop diagnostics local server",
+      "type": "shell",
+      "command": "bash \"${workspaceFolder}/scripts/stop-preview.sh\"",
+      "problemMatcher": []
+    }
+  ]
+}
