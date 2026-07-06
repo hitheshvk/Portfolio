@@ -1,0 +1,1251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diagnostics — Hithesh</title>
+  <meta name="description" content="Whatfix, 2024. The second time we tried to build the troubleshooting tool." />
+  <meta name="theme-color" content="#ECE8DC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&family=Vollkorn:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Reading column for narrative prose ---------------------------------- */
+    .prose { max-width: 680px; }
+    .prose p { margin: 0 0 var(--sp-5); line-height: 1.6; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose code, .callout code, .figure-caption code, .pullquote code,
+    .concept code, .phasing code {
+      font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+      font-size: 0.9em;
+      color: var(--ink);
+      background: oklch(0.40 0.075 245 / 0.07);
+      padding: 1px 6px;
+      border-radius: 2px;
+    }
+
+    /* Section header — narrative title */
+    .section-head { max-width: 680px; margin: var(--sp-9) 0 var(--sp-6); }
+    .section-head h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.2vw, 38px);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      max-width: 22ch;
+      line-height: 1.1;
+      text-wrap: balance;
+    }
+
+    /* Hero variant: shipped UI */
+    .study-hero--ui { aspect-ratio: 21 / 9; border: 1px solid var(--hairline); }
+    .study-hero--ui img { object-fit: cover; object-position: 88% 50%; }
+    .study-hero--ui .credit {
+      color: var(--ink-soft);
+      background: oklch(0.95 0 0 / 0.92);
+      padding: 4px 8px;
+      border-radius: 2px;
+      text-shadow: none;
+    }
+
+    /* Inline figure — image embedded in the reading flow */
+    .inline-figure { margin: var(--sp-6) 0; max-width: 920px; }
+    .inline-figure img {
+      width: 100%;
+      background: var(--paper-deep);
+      border: 1px solid var(--hairline);
+      filter: contrast(1.02) saturate(0.9);
+    }
+    .inline-figure figcaption {
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      max-width: 680px;
+    }
+    .inline-figure figcaption strong {
+      display: block;
+      color: var(--blueprint);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    /* Baseline figures inline in discovery */
+    .baseline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-5);
+      max-width: 760px;
+      margin: var(--sp-6) 0;
+      padding: var(--sp-5) 0;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+    @media (max-width: 640px) { .baseline { grid-template-columns: 1fr; } }
+    .baseline-figure {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.6vw, 28px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--blueprint);
+      font-style: italic;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+    .baseline-label {
+      display: block;
+      margin-top: var(--sp-2);
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    /* Competitor grid — 2x2 small */
+    .competitor-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-4);
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 720px) { .competitor-grid { grid-template-columns: 1fr; } }
+    .competitor-grid figure { margin: 0; }
+    .competitor-grid img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: contain;
+      background: var(--paper-deep);
+      border: 1px solid var(--hairline);
+      padding: var(--sp-3);
+    }
+    .competitor-grid figcaption {
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+    .competitor-grid figcaption strong {
+      display: block;
+      color: var(--blueprint);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    /* Persona pair */
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-4);
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 720px) { .pair { grid-template-columns: 1fr; } }
+    .pair figure { margin: 0; }
+    .pair img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: var(--paper-deep);
+      border: 1px solid var(--hairline);
+      filter: contrast(1.02) saturate(0.85);
+    }
+    .pair figcaption {
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .pair figcaption strong {
+      display: block;
+      color: var(--blueprint);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    /* Iteration — before/after with arrow */
+    .iteration {
+      display: grid;
+      grid-template-columns: 1fr 28px 1fr;
+      gap: var(--sp-4);
+      align-items: center;
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 720px) {
+      .iteration { grid-template-columns: 1fr; }
+      .iteration-arrow { transform: rotate(90deg); padding: var(--sp-3) 0; }
+    }
+    .iteration figure { margin: 0; }
+    .iteration img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: var(--paper-deep);
+      border: 1px solid var(--hairline);
+      filter: contrast(1.02) saturate(0.85);
+    }
+    .iteration-arrow {
+      font-family: var(--sans);
+      font-size: 22px;
+      color: var(--blueprint);
+      text-align: center;
+      line-height: 1;
+    }
+    .iteration figcaption {
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+    .iteration figcaption strong {
+      display: block;
+      color: var(--blueprint);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    /* Pull-quote */
+    .pullquote {
+      max-width: 680px;
+      margin: var(--sp-5) 0;
+      padding: 0 0 0 var(--sp-5);
+      border-left: 1px solid oklch(0.40 0.075 245 / 0.35);
+    }
+    .pullquote .quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0;
+    }
+    .pullquote .attrib {
+      display: block;
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      font-style: normal;
+    }
+
+    /* Decision callout */
+    .callout {
+      margin: var(--sp-6) 0;
+      padding: var(--sp-5) var(--sp-6);
+      background: oklch(0.40 0.075 245 / 0.05);
+      max-width: 760px;
+      border-radius: 3px;
+    }
+    .callout dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: var(--sp-3) var(--sp-5);
+      align-items: baseline;
+    }
+    @media (max-width: 640px) {
+      .callout dl { grid-template-columns: 1fr; gap: var(--sp-1) var(--sp-3); }
+    }
+    .callout dt {
+      font-family: var(--sans);
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--blueprint);
+      letter-spacing: 0.06em;
+      text-transform: lowercase;
+      margin: 0;
+      padding-top: 4px;
+    }
+    @media (max-width: 640px) {
+      .callout dt { padding-top: var(--sp-3); }
+      .callout dt:first-child { padding-top: 0; }
+    }
+    .callout dd {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+    .callout dd em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    /* Concepts — four options on the wall, before code */
+    .concepts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-5);
+      margin: var(--sp-6) 0;
+      max-width: 960px;
+    }
+    @media (max-width: 720px) { .concepts { grid-template-columns: 1fr; } }
+    .concept {
+      padding: var(--sp-5);
+      background: var(--paper-deep);
+      border-radius: 3px;
+    }
+    .concept-tag {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: var(--blueprint);
+      margin-bottom: var(--sp-2);
+    }
+    .concept h3 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0 0 var(--sp-3);
+      color: var(--ink);
+    }
+    .concept-body {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink);
+      margin: 0 0 var(--sp-3);
+    }
+    .concept-trade {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    .concept-trade strong {
+      color: var(--blueprint);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .concept--selected {
+      background: oklch(0.40 0.075 245 / 0.06);
+    }
+    .concept--selected .concept-tag::after {
+      content: " · taken into Phase 1";
+      color: var(--blueprint);
+      text-transform: none;
+      letter-spacing: 0.02em;
+    }
+
+    /* Phasing — Phase 1 vs Phase 2 side-by-side */
+    .phasing {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-6);
+      max-width: 920px;
+      margin: var(--sp-6) 0;
+    }
+    @media (max-width: 720px) { .phasing { grid-template-columns: 1fr; } }
+    .phase {
+      padding-top: var(--sp-4);
+      border-top: 1px solid var(--hairline);
+    }
+    .phase h3 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0 0 var(--sp-2);
+      color: var(--ink);
+    }
+    .phase-status {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: var(--blueprint);
+      display: block;
+      margin-bottom: var(--sp-4);
+    }
+    .phase ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .phase ul li {
+      padding: var(--sp-2) 0;
+      border-bottom: 1px solid var(--hairline);
+      color: var(--ink);
+    }
+    .phase ul li:last-child { border-bottom: 0; }
+
+    /* Shipped 2x2 grid */
+    .shipped-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-5);
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 720px) { .shipped-grid { grid-template-columns: 1fr; } }
+    .shipped-grid figure { margin: 0; background: var(--paper-deep); }
+    .shipped-grid img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: top right;
+      background: var(--paper-deep);
+      filter: contrast(1.02) saturate(0.85);
+      border: 1px solid var(--hairline);
+    }
+    .shipped-grid figcaption {
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+    .shipped-grid figcaption strong {
+      display: block;
+      color: var(--blueprint);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    /* Placeholder treatment */
+    figure[data-placeholder] { position: relative; }
+    figure[data-placeholder] img { visibility: hidden; }
+    figure[data-placeholder]::before {
+      content: attr(data-placeholder);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper-deep);
+      border: 1px dashed var(--hairline);
+      font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      padding: var(--sp-4);
+      text-align: center;
+    }
+    figure[data-placeholder]::after {
+      content: "placeholder";
+      position: absolute;
+      left: 50%;
+      bottom: var(--sp-4);
+      transform: translateX(-50%);
+      font-family: var(--sans);
+      font-size: 11px;
+      color: var(--blueprint);
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      white-space: nowrap;
+    }
+
+    /* Receipts */
+    .receipts {
+      max-width: 960px;
+      margin: var(--sp-6) 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--sp-5);
+      padding-top: var(--sp-5);
+      border-top: 1px solid var(--hairline);
+    }
+    @media (max-width: 720px) { .receipts { grid-template-columns: repeat(2, 1fr); } }
+    .receipt .figure {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 42px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--blueprint);
+      font-variant-numeric: tabular-nums;
+      font-style: italic;
+    }
+    .receipt .label {
+      display: block;
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .receipt .label strong { color: var(--ink); font-weight: 500; }
+
+    /* Numbered list for unship / process gaps / challenges */
+    .numbered { margin: var(--sp-6) 0; max-width: 760px; }
+    .numbered ol {
+      list-style: none;
+      counter-reset: u;
+      padding: 0;
+      margin: 0;
+    }
+    .numbered li {
+      counter-increment: u;
+      padding: var(--sp-5) 0;
+      border-top: 1px solid var(--hairline);
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: var(--sp-4);
+    }
+    .numbered li:last-child { border-bottom: 1px solid var(--hairline); }
+    .numbered li::before {
+      content: counter(u, decimal-leading-zero);
+      font-family: var(--serif);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--blueprint);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.55;
+    }
+    .numbered li p {
+      font-size: 16px;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .numbered li p + p { margin-top: var(--sp-2); }
+
+    /* Editorial draft note */
+    .editorial-note {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      padding: var(--sp-3) var(--sp-4);
+      border: 1px dashed var(--hairline);
+      margin: var(--sp-7) 0;
+      max-width: 760px;
+      line-height: 1.6;
+    }
+    .editorial-note::before {
+      content: "draft note — ";
+      color: var(--blueprint);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="siteheader">
+    <div class="name"><a href="../index.html">Hithesh</a></div>
+    <nav>
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </header>
+
+  <a href="../index.html" class="back">All work</a>
+
+  <!-- HERO -->
+  <figure class="study-hero study-hero--ui">
+    <img
+      src="../images/diagnostics/ds-overview.png"
+      onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.parentElement.setAttribute('data-placeholder','ds-overview.png · shipped Diagnostics panel');this.parentElement.classList.remove('study-hero--ui');"
+      alt="The shipped Diagnostics panel in Preview Mode."
+      loading="eager"
+    />
+    <span class="credit">Diagnostics, shipped late 2024 · Whatfix</span>
+  </figure>
+
+  <section class="study-title">
+    <h1>The second time we tried to build it.</h1>
+    <p class="dateline"><span>Whatfix</span> · 2024 · Senior PD · 0→1 (re-attempted) · Phase 1 shipped</p>
+  </section>
+
+  <section class="tldr">
+    <div class="tldr-label">tl;dr</div>
+    <p>Whatfix had failed at troubleshooting once before. Content Inspector — the year-old beta — had about ten weekly active users on a platform with thousands of seats. Diagnostics is the second attempt. I tested four concepts with customers before any code was written, validated the chosen direction at SUS 82, and shipped Phase 1 inside Preview Mode. In the first quarter post-launch, tier-1 tickets in the content-not-displaying category dropped about a third.</p>
+  </section>
+
+  <article>
+
+    <!-- =====================================================
+         ONE — THE FAILED FIRST ATTEMPT
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>The failed first attempt.</h2>
+    </header>
+
+    <div class="prose">
+      <p>By the time I started, Whatfix had already tried to solve this. Content Inspector — the beta meant to give creators self-service troubleshooting — had launched the year before. The Looker dashboard told me how it had landed.</p>
+    </div>
+
+    <figure class="inline-figure">
+      <img src="../images/diagnostics/prd/image1.png"
+           alt="The Content Inspector beta floating in the corner of a Salesforce page. A flow is shown as failed at step 3 of 3." />
+      <figcaption>
+        <strong>Content Inspector beta · in a customer's Salesforce instance</strong>
+        A floating panel showing one flow at a time, mid-play. About ten weekly active users on a platform with thousands of seats. The chart was on page two of the planning doc.
+      </figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>In its place, a support model. A Whatfix engineer would dial into a customer's browser, run a debug command in the developer tools, and read the output aloud while the content creator watched.</p>
+    </div>
+
+    <figure class="inline-figure">
+      <img src="../images/diagnostics/prd/image4.png"
+           alt="The _wfx_debug_panel() command shown in a customer's browser, with debug output and developer tools open below." />
+      <figcaption>
+        <strong><code>_wfx_debug_panel()</code> · in a customer's browser</strong>
+        The fastest troubleshooting tool Whatfix had. Unusable by anyone who had not been trained on the platform.
+      </figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>Three other companies had built debuggers for the same job. None of them had agreed on the shape.</p>
+    </div>
+
+    <div class="competitor-grid" aria-label="Competitor debuggers">
+      <figure>
+        <img src="../images/diagnostics/prd/image6.png" alt="Pendo Debugger panel." />
+        <figcaption>
+          <strong>Pendo Debugger</strong>
+          Browser-console only. Invoked by <code>pendo.enableDebugging()</code>.
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/prd/image7.png" alt="Appcues Debugger panel." />
+        <figcaption>
+          <strong>Appcues Debugger</strong>
+          Available via the editor extension. Reports why a flow or step is not showing.
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/prd/image8.png" alt="Appcues Diagnostics Tool portal." />
+        <figcaption>
+          <strong>Appcues Diagnostics Tool</strong>
+          A separate web portal, in addition to the in-product debugger.
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/prd/image9.png" alt="WalkMe Flow Tracker." />
+        <figcaption>
+          <strong>WalkMe Flow Tracker</strong>
+          Integrated into the editor. Limited support for content rendered inside iframes.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="prose">
+      <p>The brief I was handed in early 2024 — <em>build an inspector panel in Studio</em> — read like a respec of the failed beta. The first job was to understand why the last attempt had failed before deciding what to build next.</p>
+    </div>
+
+    <!-- =====================================================
+         TWO — DISCOVERY
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>What discovery told us.</h2>
+    </header>
+
+    <div class="prose">
+      <p>Eight weeks of customer interviews, ticket reads, and a second pass through two quarters of NPS verbatims. The Support team's own numbers were the first surprise — the cost of the problem was not on the customer's side of the table.</p>
+    </div>
+
+    <div class="baseline" aria-label="Discovery baselines">
+      <div>
+        <div class="baseline-figure">32 hrs</div>
+        <span class="baseline-label"><strong>Average internal RCA time</strong> per ticket — Support analysing the issue and going back and forth with the customer.</span>
+      </div>
+      <div>
+        <div class="baseline-figure">182</div>
+        <span class="baseline-label"><strong>Monthly tickets</strong> in the content-not-displaying category, across the customer base.</span>
+      </div>
+      <div>
+        <div class="baseline-figure">4</div>
+        <span class="baseline-label"><strong>Parallel ways to test content</strong> existed inside Whatfix, none of them connected to each other.</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Two primary users surfaced from the interviews. Same product, opposite vocabularies.</p>
+    </div>
+
+    <div class="pair">
+      <figure>
+        <img src="../images/diagnostics/02-persona-muriel.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','02-persona-muriel.png');"
+             alt="Persona — Muriel, Senior Instructional Designer." />
+        <figcaption>
+          <strong>Muriel · L&amp;D Trainer</strong>
+          Builds content for service teams. Wants to know <em>what's wrong with my Pop-up</em>, not what role tag is missing from the element.
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/02-persona-efraim.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','02-persona-efraim.png');"
+             alt="Persona — Efraim, Information Developer." />
+        <figcaption>
+          <strong>Efraim · Information Developer</strong>
+          Owns the support content library. Wants coverage and an audit trail, not a creator-facing tool repackaged.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="prose">
+      <p>Muriel reasons in symptoms. Efraim reasons in coverage. The pain map separated what they shared from what diverged.</p>
+    </div>
+
+    <figure class="inline-figure">
+      <img src="../images/diagnostics/03-pains.png"
+           onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','03-pains.png · pain-points diagram');"
+           alt="Pain-points diagram — customers and internal DAA team — shared pains and divergent ones." />
+      <figcaption>
+        <strong>Pain mapping · customers vs internal Support team</strong>
+        Both wanted to know what was broken. They diverged on where they noticed and how technical they could afford to be.
+      </figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>Two quarters of NPS verbatims, Q3 2023 and Q1 2024, returned the same complaint in different words. The Looker chart had counted the problem. The verbatims named it.</p>
+    </div>
+
+    <figure class="inline-figure">
+      <img src="../images/diagnostics/04-nps.png"
+           onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','04-nps.png · NPS verbatims, clustered');"
+           alt="NPS verbatims clustered by theme — features, flow failures and testing, smart-detect visual cues, and other." />
+      <figcaption>
+        <strong>NPS verbatims · Q3 2023 and Q1 2024, clustered</strong>
+        Two quarters apart. The dominant cluster was always testing and flow-failure visibility.
+      </figcaption>
+    </figure>
+
+    <aside class="pullquote">
+      <p class="quote">"There is no review mechanism built into Whatfix. When we proof each other's work as a final check before publishing, we screenshot and email feedback. A time-consuming process given the volume of content we create."</p>
+      <span class="attrib">Customer admin · NPS verbatim, Q3 2023</span>
+    </aside>
+
+    <!-- =====================================================
+         THREE — FRAMING
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>How we picked a direction.</h2>
+    </header>
+
+    <div class="prose">
+      <p>Three how-might-we framings on the wall: <em>resolve faster</em>, <em>find the issue</em>, <em>notify and guide</em>. Each one implied a different product, and only one was shippable in a quarter.</p>
+    </div>
+
+    <figure class="inline-figure">
+      <img src="../images/diagnostics/05-hmw.png"
+           onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','05-hmw.png · How Might We framings');"
+           alt="Three how-might-we framings — resolve faster, find the issue, notify and guide." />
+      <figcaption>
+        <strong>HMW framings · synthesis week</strong>
+        Three good questions. One shippable in a quarter.
+      </figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>We picked <em>find and resolve faster, in the moment of noticing</em>. The verbatims said creators were already there when failures happened. They could not tell what had gone wrong.</p>
+    </div>
+
+    <!-- =====================================================
+         FOUR — FOUR CONCEPTS, BEFORE ANY CODE
+         (Merged from deck — concept divergence)
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>Four concepts on the wall, before any code.</h2>
+    </header>
+
+    <div class="prose">
+      <p>The previous attempt had shipped a single-concept MVP and refined against customer feedback after launch. Content Inspector was that approach. I wanted to test the model before we built it. Four concepts went up, each one a different bet about <em>where</em> the troubleshooting belonged.</p>
+    </div>
+
+    <section class="concepts" aria-label="Four concepts evaluated">
+
+      <article class="concept concept--selected">
+        <span class="concept-tag">Concept A</span>
+        <h3>Diagnostics in Preview Mode</h3>
+        <p class="concept-body">A passive inspector keyed to the current page. Indexes all five Whatfix content types. Creator opens preview, sees what's there and what isn't, edits without leaving the surface.</p>
+        <p class="concept-trade">
+          <strong>upside</strong> — covers every content type, in-context editing, low cross-surface switching.<br>
+          <strong>downside</strong> — technical failures still escape to Support; the right rail is space-constrained.
+        </p>
+      </article>
+
+      <article class="concept">
+        <span class="concept-tag">Concept B</span>
+        <h3>Step-level diagnostics during play</h3>
+        <p class="concept-body">A creator runs a flow; the panel marks each step pass or fail with the failure reason inline. No cross-platform switching; edits land in real time.</p>
+        <p class="concept-trade">
+          <strong>upside</strong> — sharpest signal for the Flow content type; clear next-step guidance.<br>
+          <strong>downside</strong> — only works for Flows. The other four content types are configured, not played.
+        </p>
+      </article>
+
+      <article class="concept">
+        <span class="concept-tag">Concept C</span>
+        <h3>In-Studio ticketing with screen recording</h3>
+        <p class="concept-body">Instead of self-resolution, faster escalation. A <em>Report Issue</em> flow inside Studio that bundles a screen recording and console logs for Support.</p>
+        <p class="concept-trade">
+          <strong>upside</strong> — slashes Support's 32-hour RCA time; preserves the existing mental model.<br>
+          <strong>downside</strong> — privacy concerns with screen capture; does not move creators toward self-service.
+        </p>
+      </article>
+
+      <article class="concept">
+        <span class="concept-tag">Concept D</span>
+        <h3>Diagnostics in Dashboard</h3>
+        <p class="concept-body">A global failure list inside the existing dashboard. Admins triage at scale, drill into any failed asset, mark fixed.</p>
+        <p class="concept-trade">
+          <strong>upside</strong> — coverage view for Efraim's persona; clear resolution path; aligned with audit mental models.<br>
+          <strong>downside</strong> — abstract from the moment of failure; large lists become their own burden.
+        </p>
+      </article>
+
+    </section>
+
+    <div class="prose">
+      <p>The first concept won the test, but the conviction came from how the four were ranked together. C covered Support's pain. D covered Efraim. B was the sharpest experience for one content type. A was the only one that put the answer where the creator was already looking. We took A into Phase 1 with the strongest C and D capabilities queued behind it.</p>
+    </div>
+
+    <!-- =====================================================
+         FIVE — CONCEPT TESTING
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>Testing the concepts before we built one.</h2>
+    </header>
+
+    <div class="prose">
+      <p>The four concepts went to customers as clickable prototypes. This was the first project at Whatfix where I tested concepts before committing to development — the prior pattern was ship an MVP and learn from production. The case for testing first was a fast one to make: Content Inspector's chart was on the wall.</p>
+    </div>
+
+    <div class="callout">
+      <dl>
+        <dt>Sample</dt>
+        <dd>5–7 customers per concept, enterprise segment, all with one-plus month of DAP experience, English speakers.</dd>
+        <dt>Methods</dt>
+        <dd>Moderated walkthroughs and post-task surveys, over two weeks.</dd>
+        <dt>What we tested</dt>
+        <dd>Could they reach the right concept for their problem? Did the reasoning we surfaced match what they expected to read?</dd>
+        <dt>Outcome</dt>
+        <dd>Concept A advanced. Concept C's ticketing was retained as a fast-follow. B and D shaped the Phase 2 backlog.</dd>
+      </dl>
+    </div>
+
+    <div class="prose">
+      <p>Four themes came out of the testing that shaped the final design.</p>
+    </div>
+
+    <section class="numbered" aria-label="Concept testing insights">
+      <ol>
+        <li>
+          <p><strong>Creators loved the in-context reasoning.</strong> When the panel said <em>this Pop-up does not appear because its segment does not match the current URL</em>, they read it like a sentence and reached for the edit affordance. The phrasing was the affordance.</p>
+        </li>
+        <li>
+          <p><strong>The ticketing flow worked, with a caveat.</strong> Creators understood the screen-recording capture immediately. They also flagged sensitive data on the recorded page — which moved the ticketing flow behind a redaction step in Phase 2.</p>
+        </li>
+        <li>
+          <p><strong>Technical-sounding reasons triggered immediate escalation.</strong> A reason that read as code or system state — <code>parent_segment_mismatch</code> — was a signal to creators that they should not try and should raise a ticket. This validated the question-framed translation layer for the panel.</p>
+        </li>
+        <li>
+          <p><strong>Self-resolution was the dominant want.</strong> Creators reported they would try once on their own before reaching for Support — and that the panel's reasoning was clear enough to do so.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- =====================================================
+         SIX — THE SURFACE DECISION
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>The surface decision.</h2>
+    </header>
+
+    <div class="prose">
+      <p>The first flow diagram had three entry points — Studio, Preview Mode, Dashboard — feeding into a single Debugging panel. It was approved in twenty minutes. Two weeks later, I asked to take it down.</p>
+    </div>
+
+    <figure class="inline-figure">
+      <img src="../images/diagnostics/07-flow.png"
+           onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','07-flow.png · solution flow diagram');"
+           alt="Solution flow diagram — Studio, Preview, Dashboard arrows into one Debugging panel." />
+      <figcaption>
+        <strong>Solution flow · week six, the first diagram</strong>
+        What looked unified was three different tools sharing a label.
+      </figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>In Studio, a creator is building. They want to know whether the element they are about to attach to is stable. In Preview, they are checking their work. In Dashboard, they are triaging at scale. Each one is a different question and a different product. The replacement was a single-surface proposal: Preview Mode for Phase 1, Studio and Dashboard deferred.</p>
+    </div>
+
+    <div class="callout">
+      <dl>
+        <dt>The call</dt>
+        <dd>Ship Preview Mode only in Phase 1. Studio and Dashboard deferred to Phase 2 and 3.</dd>
+        <dt>Pushback · PM</dt>
+        <dd>Wanted all three for the Sales kickoff slide. The planned narrative was <em>diagnostics everywhere</em>.</dd>
+        <dt>Pushback · Eng</dt>
+        <dd>Believed Studio was the natural home — closer to the existing content editor, lower integration risk.</dd>
+        <dt>How I worked it</dt>
+        <dd>Wrote a three-page memo. Made the case that shipping one well beats shipping three thinly. Cited Content Inspector's adoption chart as the cost of the thinly-shipped version.</dd>
+        <dt>Outcome</dt>
+        <dd>PM signed off in round three. Engineering signed off after we agreed Phase 2 would start the following quarter.</dd>
+      </dl>
+    </div>
+
+    <!-- =====================================================
+         SEVEN — THE MODEL PIVOT
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>The model pivot.</h2>
+    </header>
+
+    <div class="prose">
+      <p>Three sprints in, the interaction model was play-driven. A creator would run a flow, and the inspector would show step-by-step results. It worked. For one of the five Whatfix content types.</p>
+    </div>
+
+    <div class="iteration">
+      <figure>
+        <img src="../images/diagnostics/08-mocks.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','08-mocks.png · early play-driven mocks');"
+             alt="Early mockup sequence — import, test, view results step by step." />
+        <figcaption>
+          <strong>v1 · play-driven · April</strong>
+          Import → Test → Inspect. Worked for Flows.
+        </figcaption>
+      </figure>
+      <div class="iteration-arrow" aria-hidden="true">→</div>
+      <figure>
+        <img src="../images/diagnostics/ds-flow-diagnose.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-flow-diagnose.png · shipped passive panel');"
+             alt="Shipped panel — passive inspection of all content types on the current page." />
+        <figcaption>
+          <strong>v2 · passive inspection · shipped</strong>
+          Page-anchored. Sees all five content types.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="prose">
+      <p>Smart Tips, Beacons, Launchers, and Pop-ups are configured, not played. The play model never reached them. The rewrite was a passive inspector keyed to the current page: open the panel and see what is there, and what should be there but isn't.</p>
+    </div>
+
+    <div class="callout">
+      <dl>
+        <dt>The call</dt>
+        <dd>Switch from a play-driven sequence to a passive inspector keyed to the current page.</dd>
+        <dt>Trigger</dt>
+        <dd>Realised the play model only saw Flows. The other four content types were configured, not played.</dd>
+        <dt>Pushback · Eng</dt>
+        <dd>The v1 UI was three sprints along. Engineering proposed shipping v1 with v2 as fast-follow.</dd>
+        <dt>Why I held</dt>
+        <dd>v1 would have shipped a tool that worked for 20% of the content types it was named for. Same failure mode as Content Inspector.</dd>
+        <dt>Cost</dt>
+        <dd>Three sprints rewritten. Six weeks of timeline absorbed.</dd>
+      </dl>
+    </div>
+
+    <!-- =====================================================
+         EIGHT — USABILITY TEST
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>One more test before launch.</h2>
+    </header>
+
+    <div class="prose">
+      <p>Two weeks before code-freeze, the passive inspector went through a moderated usability test. The goal was narrow: confirm creators could complete the four critical tasks unsupervised and that the panel did not introduce confusion that the concept test had not surfaced.</p>
+    </div>
+
+    <div class="callout">
+      <dl>
+        <dt>Sample</dt>
+        <dd>5–7 enterprise customers, one-plus month of DAP experience, English speakers — same recruitment criteria as concept testing, fresh participants.</dd>
+        <dt>Methods</dt>
+        <dd>Task-based usability test with think-aloud, over two-to-three weeks.</dd>
+        <dt>SUS score</dt>
+        <dd><em>82</em>. Above the 80 threshold for an A grade. Participants completed all four tasks without facilitator intervention.</dd>
+        <dt>Headline finding</dt>
+        <dd><em>"Inactive"</em> as a status label was read as an action verb, not a state. We renamed it to <em>not displaying</em> with the failure reason exposed on the same line.</dd>
+      </dl>
+    </div>
+
+    <div class="prose">
+      <p>The test was scoped against the constraint, not the optimism. We did not ask whether the panel was delightful. We asked whether a creator who had never seen it could finish the four tasks the product was named for.</p>
+    </div>
+
+    <!-- =====================================================
+         NINE — SHIPPED
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>What shipped.</h2>
+    </header>
+
+    <div class="prose">
+      <p>Phase 1 shipped in late 2024. Diagnostics lives in Preview Mode as a right-side drawer. It indexes the five Whatfix content types on the current page — Flows, Smart Tips, Beacons, Launchers, Pop-ups — and surfaces each with a status. Two tabs: <em>on this page</em> and <em>not on this page</em>. The second is the sleeper feature. Most diagnostic tools only show problems with what is there. This one also shows what should be there and isn't.</p>
+      <p>The default tab is <em>on this page</em>. The bet was that creators check their own work more often than they search for what's missing. A creator who scans down the list and sees green is done. The <em>not on this page</em> tab exists for the harder case, where a creator is looking for content they expected to find and can't. The tab that opens first is the design.</p>
+    </div>
+
+    <div class="shipped-grid" aria-label="Shipped Diagnostics — four key states">
+      <figure>
+        <img src="../images/diagnostics/ds-overview.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-overview.png');"
+             alt="Default view — content types indexed with statuses." />
+        <figcaption>
+          <strong>1. Default · on this page</strong>
+          Content types indexed in creator-language.
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/ds-onboarding.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-onboarding.png');"
+             alt="First-run onboarding tooltip." />
+        <figcaption>
+          <strong>2. First-run · contextual onboarding</strong>
+          One tooltip, anchored, dismissible.
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/ds-not-on-page.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-not-on-page.png');"
+             alt="Not-on-this-page tab — what should be on the page but isn't." />
+        <figcaption>
+          <strong>3. Not on this page</strong>
+          The sleeper feature — surfaces what's missing.
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/ds-flow-diagnose.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-flow-diagnose.png');"
+             alt="Flow diagnose — step-level status with explanation inline." />
+        <figcaption>
+          <strong>4. Flow diagnose · step-by-step</strong>
+          Step status with the failure explained in plain language.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="prose">
+      <p>The detail panel uses question framing instead of attribute framing. Where engineering wanted a flat attribute table — <code>display_order: 1</code> — the panel asks <em>When does this appear?</em> and answers in a sentence. The raw state is one click into the accordion.</p>
+    </div>
+
+    <figure class="inline-figure">
+      <img src="../images/diagnostics/ds-detail.png"
+           onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-detail.png · shipped detail panel');"
+           alt="Shipped detail panel for a Pop-up — status pill, plain-language sentence, question-framed accordion." />
+      <figcaption>
+        <strong>Detail panel · shipped</strong>
+        The sentence is the affordance. The raw state — selector, role tag, segment ID — is the audit trail, hidden but reachable.
+      </figcaption>
+    </figure>
+
+    <div class="callout">
+      <dl>
+        <dt>The call</dt>
+        <dd>Question-framed answers in the default view. Raw state in an accordion, one click deeper.</dd>
+        <dt>Pushback · Eng</dt>
+        <dd>Wanted a flat attribute table — faithful read of the underlying state. Would also have served internal Support without a second UI.</dd>
+        <dt>How I worked it</dt>
+        <dd>Mapped a sample of Support tickets to find the question creators were actually asking. <em>When does this appear?</em> won. <code>display_order: 1</code> was the wrong unit.</dd>
+        <dt>Outcome</dt>
+        <dd>Got both. Questions are the default; raw state is one click. The translation layer is ongoing maintenance.</dd>
+      </dl>
+    </div>
+
+    <div class="prose">
+      <p>The panel composes from existing patterns. The right-side drawer is Studio's content editor. The status pills are the Analytics dashboard's. The accordion is the same primitive that Workflows uses. No new visual language was introduced and no new documentation page was needed on the customer side.</p>
+      <p>The first-run tooltip is one anchored hint, dismissed on first click. We did not build a tour. The bet was that the panel would earn its place on the second session, not the first — and a tour would have slowed the second session more than it would have helped the first.</p>
+    </div>
+
+    <!-- =====================================================
+         TEN — PHASING
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>Phase 1, and what's queued behind it.</h2>
+    </header>
+
+    <div class="prose">
+      <p>The roadmap was the negotiation. The Sales kickoff narrative wanted everything. The team needed to ship one good surface. The phasing made what got cut visible to everyone who signed off.</p>
+    </div>
+
+    <div class="phasing" aria-label="Phasing — Phase 1 shipped, Phase 2 queued">
+      <div class="phase">
+        <h3>Phase 1</h3>
+        <span class="phase-status">shipped · Q4 2024</span>
+        <ul>
+          <li>Diagnostics inside Preview Mode</li>
+          <li>Indexed across all five content types</li>
+          <li>Step-level diagnostics for Flows</li>
+          <li>Edit-while-previewing</li>
+          <li>Question-framed reasoning</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <h3>Phase 2</h3>
+        <span class="phase-status">queued</span>
+        <ul>
+          <li>Failed-in-production tab</li>
+          <li>Resolve live content from the panel</li>
+          <li><em>Report Issue</em> with redacted screen capture</li>
+          <li>Better author-friendly reasoning for the long tail of technical failures</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>The Phase 1 trade-off that hurt most internally: <em>Report Issue</em> was held back. Concept testing had validated it; the engineering work to bundle a redacted recording with console logs needed its own quarter. Customer Success carried that gap for two sprints after launch.</p>
+    </div>
+
+    <!-- =====================================================
+         ELEVEN — RECEIPTS
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>What the first two quarters said.</h2>
+    </header>
+
+    <div class="receipts">
+      <div class="receipt">
+        <div class="figure">−33%</div>
+        <span class="label"><strong>Tier-1 tickets</strong> in the content-not-displaying category, Q1 post-launch, baselined against the prior six months. Held in Q2.</span>
+      </div>
+      <div class="receipt">
+        <div class="figure">−20%</div>
+        <span class="label"><strong>Screen-share requests</strong> in the same category. The smaller drop suggests the calls were never only about diagnosis.</span>
+      </div>
+      <div class="receipt">
+        <div class="figure">82</div>
+        <span class="label"><strong>SUS score</strong> from pre-launch usability testing — above the A-grade threshold of 80.</span>
+      </div>
+      <div class="receipt">
+        <div class="figure">0</div>
+        <span class="label"><strong>Net-new UI patterns.</strong> The panel reuses Whatfix's existing drawer, pill, and accordion components.</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Two quarters of data is not enough to call the ticket drop durable. I would want four before treating it as a baseline.</p>
+    </div>
+
+    <!-- =====================================================
+         TWELVE — UNSHIP
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>What I'd unship.</h2>
+    </header>
+
+    <section class="numbered">
+      <ol>
+        <li>
+          <p><strong>The <em>Diagnose</em> CTA.</strong> It opens a panel that answers <em>why</em>, well — and doesn't help a creator <em>fix</em>. I would rename it <em>Inspect</em>, or add the missing affordance behind it.</p>
+        </li>
+        <li>
+          <p><strong>The phasing without a date.</strong> Studio and Dashboard were deferred without a public commitment. Eighteen months in, the answer to <em>when</em> is still <em>yes, coming</em>.</p>
+        </li>
+        <li>
+          <p><strong>The naming concession.</strong> Sales had used <em>diagnostics</em> in pitch decks before launch. I should have asked them to hold the name until the product shipped.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- =====================================================
+         THIRTEEN — WHERE THE PROCESS STRAINED
+         (Org-friction critique, not product critique)
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>Where the process strained.</h2>
+    </header>
+
+    <div class="prose">
+      <p>The shipped product is what it is. The process underneath had three friction points worth naming — not because they broke the project, but because they would have produced a better one if I'd resolved them sooner.</p>
+    </div>
+
+    <section class="numbered">
+      <ol>
+        <li>
+          <p><strong>Recruiting across personas was the timeline bottleneck.</strong> Concept testing and usability testing each needed enterprise customers with one-plus month of DAP experience. The recruitment pipeline could not produce both Muriel-style and Efraim-style participants on schedule. We ran most testing against the Muriel side. Efraim's coverage view in Phase 2 will need its own usability validation before commit.</p>
+        </li>
+        <li>
+          <p><strong>Fragmented engineering attendance produced late opinions.</strong> Engineers were split across two concurrent projects. Critical design reviews happened with partial engineering present, which meant the model pivot in week eight surfaced after engineers who had not been in earlier reviews caught up. A standing eng-design weekly with the same three names would have caught it in week three.</p>
+        </li>
+        <li>
+          <p><strong>Design-system adherence cost us two better treatments.</strong> The status pill component supported three states; Diagnostics needed five. We extended it sideways with copy and shape variation instead of designing the proper component, because the design-system pod was mid-overhaul and could not absorb a contribution. Two months after launch, the design-system team flagged the same gap from their side. The right move is co-design earlier in the cycle.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- =====================================================
+         FOURTEEN — WHAT I'D CLOSE BEFORE PHASE 2
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>What I'd close before Phase 2.</h2>
+    </header>
+
+    <div class="prose">
+      <p>Three places the process did not engage. They are not faults of the shipped product. They are work that didn't get done — and that I would close before any Phase 2 commit.</p>
+    </div>
+
+    <section class="numbered">
+      <ol>
+        <li>
+          <p><strong>The AI translation layer.</strong> The question-framed answers in the detail panel are hand-authored — one engineer wrote each translation. In 2024, an LLM could have generated those from raw state at lower maintenance cost. We did not build it that way because deterministic translations gave us a quality floor the team could verify. The right call for Phase 1. The wrong default for Phase 2 if the maintenance cost keeps growing.</p>
+        </li>
+        <li>
+          <p><strong>Performance against real customer pages.</strong> Preview Mode runs as a browser extension. The panel inspects the page DOM on open. We set a 200ms budget to first paint and met it on internal test fixtures. We did not measure against real customer pages with thousands of DOM nodes, or against pages with heavy iframe content. That work is outstanding.</p>
+        </li>
+        <li>
+          <p><strong>Accessibility verification.</strong> The panel has keyboard navigation and focus management. Status uses both color and shape, not color alone. We did not run a formal WCAG 2.2 audit before launch — compliance is asserted by the team, not third-party verified. A pre-Phase-2 audit is the cheapest reduction in risk we can buy.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- =====================================================
+         FIFTEEN — LEARNINGS
+         (Compressed from deck; voice-matched)
+         ===================================================== -->
+
+    <header class="section-head">
+      <h2>What I took from it.</h2>
+    </header>
+
+    <div class="prose">
+      <p>This was the first project at Whatfix where I tested concepts before development instead of after, and the first where I tied design-driven work to a roadmap through measurable Key Results. The pattern travelled. When I began leading a platform team after this, KR-first roadmap planning was the default. The case study I wrote about Diagnostics was the artefact that taught me to write one.</p>
+    </div>
+
+    <p class="editorial-note">
+      Real images live: <code>prd/image1.png</code>, <code>prd/image4.png</code>, <code>prd/image6–9.png</code> (Content Inspector beta, console debug panel, four competitor debuggers). Still to drop into <code>/images/diagnostics/</code>: persona, pain-map, NPS, HMW, flow-diagram, mockup, and shipped-screen exports. Project name <code>J&amp;J_Salesforce_demo</code> needs scrubbing in the shipped screens before publish.
+    </p>
+
+    <div class="mark" aria-hidden="true"></div>
+
+    <div class="nextstudy">
+      <span class="label">Next</span>
+      <a href="atlas.html">Atlas — removing four years of features without removing a year of trust</a>
+    </div>
+
+  </article>
+
+  <footer class="sitefooter">
+    <div>Set in Vollkorn &amp; Public Sans.</div>
+    <div class="credits">Shipped screens · Whatfix Diagnostics, late 2024. PRD images · Whatfix internal.</div>
+  </footer>
+
+</div>
+
+<script src="../scripts/cursor.js" defer></script>
+
+</body>
+</html>
