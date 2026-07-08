@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diagnostics — Hithesh</title>
+  <meta name="description" content="Whatfix, 2024. Four preview modes and no way for authors to know when their content was broken. This is the tab we shipped inside one of them." />
+  <meta name="theme-color" content="#ECE8DC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&family=Vollkorn:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* v5 — written from the actual account, honest scope */
+
+    .study-title h1 {
+      font-size: clamp(56px, 9vw, 112px);
+      letter-spacing: -0.045em;
+      line-height: 0.95;
+      max-width: 14ch;
+    }
+    .dek {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(20px, 2.2vw, 26px);
+      line-height: 1.4;
+      color: var(--ink);
+      max-width: 42ch;
+      margin: var(--sp-6) 0 var(--sp-5);
+      text-wrap: balance;
+    }
+    .dateline {
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      color: var(--ink-soft);
+    }
+    .dateline span { color: var(--ink); font-weight: 500; }
+
+    .the-bet {
+      max-width: 680px;
+      margin: var(--sp-8) 0;
+      font-family: var(--serif);
+      font-size: clamp(19px, 1.8vw, 22px);
+      line-height: 1.55;
+      color: var(--ink);
+    }
+    .the-bet em { color: var(--blueprint); font-style: italic; }
+
+    .prose { max-width: 680px; }
+    .prose p {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.65;
+      margin: 0 0 var(--sp-5);
+      color: var(--ink);
+    }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose em { color: var(--blueprint); }
+    .prose strong { color: var(--ink); font-weight: 600; }
+    .prose code, .callout code, .flow code, .preview-mode code {
+      font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+      font-size: 0.85em;
+      color: var(--ink);
+      background: oklch(0.40 0.075 245 / 0.07);
+      padding: 1px 6px;
+      border-radius: 2px;
+    }
+
+    .section-head { max-width: 760px; margin: var(--sp-9) 0 var(--sp-6); }
+    .section-head h2 {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 46px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      max-width: 22ch;
+      line-height: 1.05;
+      text-wrap: balance;
+      margin: 0;
+    }
+    .section-head .head-note {
+      display: block;
+      margin-top: var(--sp-3);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 36ch;
+    }
+
+    .provenance {
+      display: inline-block;
+      font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+      font-size: 11px;
+      color: var(--blueprint);
+      letter-spacing: 0.02em;
+      margin-bottom: var(--sp-3);
+      padding: 2px 8px 3px;
+      background: oklch(0.40 0.075 245 / 0.08);
+      border-radius: 2px;
+    }
+
+    .hero-number { margin: var(--sp-8) 0 var(--sp-6); max-width: 760px; }
+    .hero-number .figure {
+      font-family: var(--serif);
+      font-size: clamp(120px, 18vw, 240px);
+      font-weight: 500;
+      font-style: italic;
+      letter-spacing: -0.06em;
+      line-height: 0.85;
+      color: var(--blueprint);
+      font-variant-numeric: tabular-nums;
+      display: block;
+    }
+    .hero-number .figure-label {
+      display: block;
+      margin-top: var(--sp-4);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(20px, 2vw, 24px);
+      color: var(--ink);
+      max-width: 32ch;
+      line-height: 1.4;
+    }
+
+    .study-hero--ui { aspect-ratio: 21 / 9; border: 1px solid var(--hairline); }
+    .study-hero--ui img { object-fit: cover; object-position: 88% 50%; }
+    .study-hero--ui .credit {
+      color: var(--ink-soft);
+      background: oklch(0.95 0 0 / 0.92);
+      padding: 4px 8px;
+      border-radius: 2px;
+      text-shadow: none;
+    }
+
+    .inline-figure { margin: var(--sp-6) 0; max-width: 920px; }
+    .inline-figure img {
+      width: 100%;
+      background: var(--paper-deep);
+      border: 1px solid var(--hairline);
+      filter: contrast(1.02) saturate(0.9);
+    }
+    .inline-figure figcaption {
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      max-width: 680px;
+    }
+    .inline-figure figcaption strong {
+      display: block;
+      color: var(--blueprint);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    /* Four preview modes */
+    .preview-modes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-3);
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 720px) { .preview-modes { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .preview-modes { grid-template-columns: 1fr; } }
+    .preview-mode {
+      padding: var(--sp-4);
+      background: var(--paper-deep);
+      border-radius: 3px;
+    }
+    .preview-mode--used { background: oklch(0.40 0.075 245 / 0.08); }
+    .preview-mode-tag {
+      display: block;
+      font-family: var(--sans);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: var(--ink-soft);
+      margin-bottom: var(--sp-2);
+    }
+    .preview-mode--used .preview-mode-tag { color: var(--blueprint); }
+    .preview-mode--used .preview-mode-tag::after {
+      content: " · used at scale";
+      letter-spacing: 0.02em;
+    }
+    .preview-mode h4 {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0 0 var(--sp-2);
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .preview-mode p {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    /* Baselines */
+    .baselines {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-6);
+      max-width: 760px;
+      margin: var(--sp-6) 0;
+      padding: var(--sp-6) 0;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+    @media (max-width: 640px) { .baselines { grid-template-columns: 1fr; } }
+    .baseline-figure {
+      font-family: var(--serif);
+      font-size: clamp(30px, 3.6vw, 40px);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      color: var(--blueprint);
+      font-style: italic;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.05;
+    }
+    .baseline-label {
+      display: block;
+      margin-top: var(--sp-2);
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .baseline-label strong { color: var(--ink); font-weight: 500; }
+
+    /* Persona pair */
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-5);
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 720px) { .pair { grid-template-columns: 1fr; } }
+    .pair figure { margin: 0; }
+    .pair img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: var(--paper-deep);
+      border: 1px solid var(--hairline);
+      filter: contrast(1.02) saturate(0.85);
+    }
+    .pair figcaption {
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+    .pair figcaption strong {
+      display: block;
+      color: var(--blueprint);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    /* Two-bucket split — author-fixable vs technical */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-5);
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 720px) { .split { grid-template-columns: 1fr; } }
+    .bucket {
+      padding: var(--sp-5);
+      background: var(--paper-deep);
+      border-radius: 3px;
+    }
+    .bucket--fixable {
+      background: oklch(0.40 0.075 245 / 0.06);
+    }
+    .bucket-tag {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: var(--ink-soft);
+      margin-bottom: var(--sp-2);
+    }
+    .bucket--fixable .bucket-tag { color: var(--blueprint); }
+    .bucket h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0 0 var(--sp-3);
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .bucket ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--ink);
+    }
+    .bucket ul li {
+      padding: var(--sp-2) 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .bucket ul li:last-child { border-bottom: 0; }
+
+    /* Content-type strategy grid */
+    .type-strategies {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-3);
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 900px) { .type-strategies { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .type-strategies { grid-template-columns: 1fr; } }
+    .type-strategy {
+      padding: var(--sp-4);
+      border-top: 2px solid var(--hairline);
+    }
+    .type-strategy--play { border-top-color: var(--blueprint); }
+    .type-strategy--upfront { border-top-color: oklch(0.65 0.12 245); }
+    .type-strategy--care { border-top-color: oklch(0.70 0.10 60); }
+    .type-strategy .method {
+      display: block;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: var(--ink-soft);
+      margin-bottom: var(--sp-2);
+    }
+    .type-strategy--play .method { color: var(--blueprint); }
+    .type-strategy--upfront .method { color: oklch(0.55 0.14 245); }
+    .type-strategy--care .method { color: oklch(0.55 0.14 60); }
+    .type-strategy h4 {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0 0 var(--sp-2);
+      color: var(--ink);
+    }
+    .type-strategy p {
+      font-family: var(--sans);
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    /* Cut-ideas grid */
+    .cut-ideas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-5);
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 720px) { .cut-ideas { grid-template-columns: 1fr; } }
+    .cut-idea {
+      padding: var(--sp-5);
+      background: var(--paper-deep);
+      border-radius: 3px;
+      position: relative;
+    }
+    .cut-idea::after {
+      content: "cut";
+      position: absolute;
+      top: var(--sp-4);
+      right: var(--sp-4);
+      font-family: var(--sans);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 2px 6px;
+      background: oklch(0.90 0.005 60);
+      border-radius: 2px;
+    }
+    .cut-idea-tag {
+      display: block;
+      font-family: var(--sans);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: var(--ink-soft);
+      margin-bottom: var(--sp-2);
+    }
+    .cut-idea h3 {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0 0 var(--sp-3);
+      color: var(--ink);
+      line-height: 1.2;
+      max-width: 22ch;
+    }
+    .cut-idea .reason {
+      font-family: var(--sans);
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink);
+      margin: 0;
+    }
+    .cut-idea .reason em {
+      color: var(--blueprint);
+      font-style: italic;
+    }
+
+    /* Collaboration callout */
+    .callout {
+      margin: var(--sp-6) 0;
+      padding: var(--sp-5) var(--sp-6);
+      background: oklch(0.40 0.075 245 / 0.05);
+      max-width: 760px;
+      border-radius: 3px;
+    }
+    .callout dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: var(--sp-3) var(--sp-5);
+      align-items: baseline;
+    }
+    @media (max-width: 640px) {
+      .callout dl { grid-template-columns: 1fr; gap: var(--sp-1) var(--sp-3); }
+    }
+    .callout dt {
+      font-family: var(--sans);
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--blueprint);
+      letter-spacing: 0.06em;
+      text-transform: lowercase;
+      margin: 0;
+      padding-top: 4px;
+    }
+    @media (max-width: 640px) {
+      .callout dt { padding-top: var(--sp-3); }
+      .callout dt:first-child { padding-top: 0; }
+    }
+    .callout dd {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+    .callout dd em { font-family: var(--serif); font-style: italic; color: var(--ink); }
+    .callout dd strong { color: var(--ink); font-weight: 600; }
+
+    /* Happy paths — two flows side by side */
+    .happy-paths {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-6);
+      max-width: 920px;
+      margin: var(--sp-6) 0;
+    }
+    @media (max-width: 720px) { .happy-paths { grid-template-columns: 1fr; } }
+    .flow {
+      padding-top: var(--sp-4);
+      border-top: 2px solid var(--blueprint);
+    }
+    .flow h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0 0 var(--sp-2);
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .flow-method {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: var(--blueprint);
+      display: block;
+      margin-bottom: var(--sp-4);
+    }
+    .flow ol {
+      list-style: none;
+      counter-reset: fs;
+      padding: 0;
+      margin: 0;
+    }
+    .flow ol li {
+      counter-increment: fs;
+      padding: var(--sp-2) 0 var(--sp-2) 32px;
+      position: relative;
+      font-family: var(--sans);
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink);
+      border-bottom: 1px solid var(--hairline);
+    }
+    .flow ol li:last-child { border-bottom: 0; }
+    .flow ol li::before {
+      content: counter(fs, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: var(--sp-2);
+      font-family: var(--serif);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--blueprint);
+      font-variant-numeric: tabular-nums;
+    }
+    .flow ol li strong { color: var(--ink); font-weight: 600; }
+
+    /* Shipped grid */
+    .shipped-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-5);
+      margin: var(--sp-6) 0;
+      max-width: 920px;
+    }
+    @media (max-width: 720px) { .shipped-grid { grid-template-columns: 1fr; } }
+    .shipped-grid figure { margin: 0; background: var(--paper-deep); }
+    .shipped-grid img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: top right;
+      background: var(--paper-deep);
+      filter: contrast(1.02) saturate(0.85);
+      border: 1px solid var(--hairline);
+    }
+    .shipped-grid figcaption {
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+    .shipped-grid figcaption strong {
+      display: block;
+      color: var(--blueprint);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    /* Phasing */
+    .phasing {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-6);
+      max-width: 920px;
+      margin: var(--sp-6) 0;
+    }
+    @media (max-width: 720px) { .phasing { grid-template-columns: 1fr; } }
+    .phase {
+      padding-top: var(--sp-4);
+      border-top: 1px solid var(--hairline);
+    }
+    .phase h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin: 0 0 var(--sp-2);
+      color: var(--ink);
+    }
+    .phase-status {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: var(--blueprint);
+      display: block;
+      margin-bottom: var(--sp-4);
+    }
+    .phase ul {
+      list-style: none; margin: 0; padding: 0;
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .phase ul li {
+      padding: var(--sp-2) 0;
+      border-bottom: 1px solid var(--hairline);
+      color: var(--ink);
+    }
+    .phase ul li:last-child { border-bottom: 0; }
+
+    /* Placeholder */
+    figure[data-placeholder] { position: relative; }
+    figure[data-placeholder] img { visibility: hidden; }
+    figure[data-placeholder]::before {
+      content: attr(data-placeholder);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper-deep);
+      border: 1px dashed var(--hairline);
+      font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+      font-size: 11.5px;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      padding: var(--sp-4);
+      text-align: center;
+      line-height: 1.5;
+    }
+    figure[data-placeholder]::after {
+      content: "placeholder";
+      position: absolute;
+      left: 50%;
+      bottom: var(--sp-3);
+      transform: translateX(-50%);
+      font-family: var(--sans);
+      font-size: 10.5px;
+      color: var(--blueprint);
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      white-space: nowrap;
+    }
+
+    /* Receipts */
+    .receipts {
+      max-width: 960px;
+      margin: var(--sp-6) 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--sp-5);
+      padding-top: var(--sp-5);
+      border-top: 1px solid var(--hairline);
+    }
+    @media (max-width: 720px) { .receipts { grid-template-columns: repeat(2, 1fr); } }
+    .receipt .figure {
+      font-family: var(--serif);
+      font-size: clamp(38px, 4.6vw, 52px);
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--blueprint);
+      font-variant-numeric: tabular-nums;
+      font-style: italic;
+    }
+    .receipt .label {
+      display: block;
+      margin-top: var(--sp-3);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .receipt .label strong { color: var(--ink); font-weight: 500; }
+
+    /* Numbered list */
+    .numbered { margin: var(--sp-6) 0; max-width: 760px; }
+    .numbered ol { list-style: none; counter-reset: u; padding: 0; margin: 0; }
+    .numbered li {
+      counter-increment: u;
+      padding: var(--sp-5) 0;
+      border-top: 1px solid var(--hairline);
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: var(--sp-4);
+    }
+    .numbered li:last-child { border-bottom: 1px solid var(--hairline); }
+    .numbered li::before {
+      content: counter(u, decimal-leading-zero);
+      font-family: var(--serif);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--blueprint);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.55;
+    }
+    .numbered li p {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* The 2026 lens */
+    .lens-2026 {
+      margin: var(--sp-9) calc(-1 * var(--sp-6)) var(--sp-9);
+      padding: var(--sp-8) var(--sp-6);
+      background: oklch(0.40 0.075 245 / 0.045);
+    }
+    @media (max-width: 640px) {
+      .lens-2026 { margin-left: 0; margin-right: 0; padding-left: var(--sp-5); padding-right: var(--sp-5); }
+    }
+    .lens-2026 .section-head { margin-top: 0; }
+    .lens-shifts { max-width: 760px; margin: var(--sp-6) 0; }
+    .lens-shift {
+      padding: var(--sp-4) 0;
+      border-top: 1px solid oklch(0.40 0.075 245 / 0.25);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: var(--sp-5);
+    }
+    @media (max-width: 720px) { .lens-shift { grid-template-columns: 1fr; gap: var(--sp-3); } }
+    .lens-shifts .lens-shift:last-child { border-bottom: 1px solid oklch(0.40 0.075 245 / 0.25); }
+    .lens-shift .from-to {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+      color: var(--ink);
+    }
+    .lens-shift .from-to .from {
+      color: var(--ink-soft);
+      font-style: italic;
+      display: block;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0;
+      margin-bottom: 2px;
+    }
+    .lens-shift .from-to .arrow { color: var(--blueprint); }
+    .lens-shift p {
+      font-family: var(--serif);
+      font-size: 16px;
+      line-height: 1.55;
+      margin: 0;
+      color: var(--ink);
+    }
+
+    /* Team credit */
+    .team-credit {
+      max-width: 760px;
+      margin: var(--sp-6) 0;
+      padding: var(--sp-4) 0;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+    .team-credit strong { color: var(--ink); font-weight: 500; }
+
+    /* Closing */
+    .closing-note {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(19px, 2vw, 22px);
+      line-height: 1.5;
+      color: var(--ink);
+      max-width: 680px;
+      margin: var(--sp-8) 0;
+      text-wrap: balance;
+    }
+
+    /* Editorial draft note */
+    .editorial-note {
+      font-family: var(--sans);
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      padding: var(--sp-3) var(--sp-4);
+      border: 1px dashed var(--hairline);
+      margin: var(--sp-7) 0;
+      max-width: 760px;
+      line-height: 1.6;
+    }
+    .editorial-note::before {
+      content: "draft note — ";
+      color: var(--blueprint);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="siteheader">
+    <div class="name"><a href="../index.html">Hithesh</a></div>
+    <nav>
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </header>
+
+  <a href="../index.html" class="back">All work</a>
+
+  <!-- HERO -->
+  <figure class="study-hero study-hero--ui">
+    <img
+      src="../images/diagnostics/ds-overview.png"
+      onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.parentElement.setAttribute('data-placeholder','ds-overview.png · shipped Diagnostics tab');this.parentElement.classList.remove('study-hero--ui');"
+      alt="The shipped Diagnostics tab inside Preview Mode."
+      loading="eager"
+    />
+    <span class="credit">Diagnostics, shipped late 2024 · Whatfix</span>
+  </figure>
+
+  <section class="study-title">
+    <h1>Diagnostics.</h1>
+    <p class="dek">Whatfix authors couldn't debug their own content. Four preview modes existed; none of them told an author what was wrong. This is the tab I designed inside one of them — built around the constraint that different content types can't be diagnosed the same way.</p>
+    <p class="dateline"><span>Whatfix</span> · 2024, written in 2026 · Senior PD · troubleshooting tool · Phase 1 shipped</p>
+  </section>
+
+  <p class="the-bet">
+    Diagnostics is a dedicated tab inside Whatfix Preview Mode. Enabling Preview Mode navigates the author to it. Content is categorized the same way as in creation — Flows, Smart Tips, Beacons, Launchers, Pop-ups — with a <em>Not on this page</em> section for content that belongs elsewhere. Underneath, three detection strategies run in parallel because <em>flows need to be played to fail, smart tips can be surfaced upfront, and pop-ups need care to avoid false positives.</em> One UI. Three logics.
+  </p>
+
+  <p class="team-credit">
+    <strong>The team:</strong> a designer (me), a PM, an EM, a UX researcher on-call, and <em>the Support team as a discovery partner</em> — they classified every ticket into what an author could fix and what they couldn't, which shaped the whole panel. Cross-pod partners in Engineering and the Design System pod.
+  </p>
+
+  <article>
+
+    <!-- =====================================================
+         1 · DISCOVERY — NO TOOL FOR AUTHORS
+         ===================================================== -->
+
+    <header class="section-head">
+      <span class="provenance">[author's brief · Q1 2024 discovery]</span>
+      <h2>There was no tool for authors.</h2>
+      <span class="head-note">When authors' content stopped working, the only path was escalation. There wasn't a design problem yet — there was a missing product.</span>
+    </header>
+
+    <div class="prose">
+      <p>When I picked up the brief in early 2024, Whatfix had no author-facing diagnostic tool. If a Smart Tip stopped firing or a Flow broke mid-step, the author had one option: file a Support ticket, wait for a screen-share, and watch a Whatfix engineer run a debug command in the developer tools of their own browser. That was the author-facing model for troubleshooting: escalate, wait, watch.</p>
+    </div>
+
+    <div class="baselines">
+      <div>
+        <div class="baseline-figure">32 hrs</div>
+        <span class="baseline-label"><strong>Internal RCA time</strong> per ticket — Support analysing and looping with the customer.</span>
+      </div>
+      <div>
+        <div class="baseline-figure">182</div>
+        <span class="baseline-label"><strong>Monthly tickets</strong> in the content-not-displaying category.</span>
+      </div>
+      <div>
+        <div class="baseline-figure">4</div>
+        <span class="baseline-label"><strong>Preview modes existed</strong> in Whatfix — all showing pixels, none showing failures.</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>The second discovery was inside the product. Whatfix had four different preview modes, each doing an overlapping version of the same job: showing an author what their content looked like before publish. Authors tried multiple methods, unsure which was right for what.</p>
+    </div>
+
+    <div class="preview-modes" aria-label="Four preview modes in Whatfix, 2024">
+      <div class="preview-mode preview-mode--used">
+        <span class="preview-mode-tag">1</span>
+        <h4>Preview Mode</h4>
+        <p>In-Studio preview on the target URL, with editing enabled. The one authors reached for most.</p>
+      </div>
+      <div class="preview-mode">
+        <span class="preview-mode-tag">2</span>
+        <h4>See Live</h4>
+        <p>Opens the customer's live product with content overlaid — in a <em>separate view</em>, disconnected from Studio.</p>
+      </div>
+      <div class="preview-mode">
+        <span class="preview-mode-tag">3</span>
+        <h4>Preview</h4>
+        <p>Modal from the content list. Fast, but <em>no target-URL context</em> — URL-scoped diagnostics would be meaningless.</p>
+      </div>
+      <div class="preview-mode">
+        <span class="preview-mode-tag">4</span>
+        <h4>Launch Live Edit</h4>
+        <p>For editing live production content. <em>Wrong intent</em> — this isn't the pre-publish check flow.</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><strong>Why Preview Mode won.</strong> Not because it was popular — because it was the only mode structurally capable of hosting Diagnostics. Diagnosis, fix, and re-verify had to happen in one gesture, without leaving the surface. Preview Mode was the only one that ran <em>in Studio, on the target URL, with editing enabled</em>. See Live broke the loop with a separate view. Preview lacked URL context. Launch Live Edit was for the wrong moment in the workflow. The criterion decided the surface: <em>never leave the surface to complete the loop.</em></p>
+    </div>
+
+    <div class="pair">
+      <figure>
+        <img src="../images/diagnostics/02-persona-muriel.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','02-persona-muriel.png');"
+             alt="Muriel persona." />
+        <figcaption><strong>Muriel · L&amp;D Trainer</strong>Non-technical. Wants to <em>create and manage content</em>. Anything more is friction she resents.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/02-persona-efraim.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','02-persona-efraim.png');"
+             alt="Efraim persona." />
+        <figcaption><strong>Efraim · Information Developer</strong>Also non-technical. Manages content across many pages. Frustration compounds when he has to rely on Support.</figcaption>
+      </figure>
+    </div>
+
+    <!-- =====================================================
+         2 · SORTING WITH THE PM + SUPPORT TEAM
+         ===================================================== -->
+
+    <header class="section-head">
+      <span class="provenance">[discovery · with the PM and the Support team · Q1–Q2 2024]</span>
+      <h2>Who owns which issue?</h2>
+      <span class="head-note">The Support team knew the answer better than anyone else in the building. We sat with them and two quarters of tickets, and sorted every issue into two buckets. Their classification was the load-bearing part.</span>
+    </header>
+
+    <div class="prose">
+      <p>Support wasn't a downstream stakeholder to inform; they were the discovery partner. They'd resolved every one of the 182 monthly tickets themselves and knew, ticket by ticket, whether the author could have fixed it if they'd been shown how — or whether it genuinely needed engineering. The design's whole audience question — <em>who is Diagnostics for?</em> — was answered in that room, not in mine.</p>
+    </div>
+
+    <div class="split">
+      <div class="bucket bucket--fixable">
+        <span class="bucket-tag">bucket 1 · author-fixable</span>
+        <h3>Issues the author owns — surface them clearly.</h3>
+        <ul>
+          <li>Display rule mismatch (segment / URL / device)</li>
+          <li>Wrong or missing element selector</li>
+          <li>Content in wrong workflow stage</li>
+          <li>Occurrence rules not set correctly</li>
+          <li>Content published to the wrong page</li>
+        </ul>
+      </div>
+      <div class="bucket">
+        <span class="bucket-tag">bucket 2 · technical</span>
+        <h3>Issues Support owns — smooth the escalation.</h3>
+        <ul>
+          <li>Browser extension version mismatches</li>
+          <li>Customer-side DOM structure changes</li>
+          <li>iframe permission and cross-origin failures</li>
+          <li>SPA route changes breaking anchors</li>
+          <li>CSP restrictions blocking Whatfix runtime</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <dl>
+        <dt>support brought</dt>
+        <dd>The classification itself — the ticket-by-ticket knowledge of which issues authors could actually own. Also the trust that a self-service tool wouldn't shove work back onto them; if the design got Bucket 2 wrong, Support would inherit the noise.</dd>
+        <dt>PM brought</dt>
+        <dd>The scope question. <em>How much of Bucket 1 does Phase 1 have to cover to earn the launch?</em> We agreed on the top five issue types by ticket volume — the display-rule, selector, stage, occurrence, and page-scoping issues shown left.</dd>
+        <dt>I brought</dt>
+        <dd>The UI reconciliation. Bucket 1 gets the fix path in the panel. Bucket 2 gets a clean escalation with the diagnosis pre-attached, so Support inherits <em>context</em>, not <em>translation work</em>.</dd>
+        <dt>we agreed</dt>
+        <dd>Neither bucket could feel like a dead end. Bucket 1 was the design job. Bucket 2 was the honesty job. Both had to ship on day one.</dd>
+      </dl>
+    </div>
+
+    <!-- =====================================================
+         3 · THE CONSTRAINT — CONTENT TYPES
+         ===================================================== -->
+
+    <header class="section-head">
+      <span class="provenance">[engineering conversation · Q2 2024]</span>
+      <h2>One panel. Three detection strategies.</h2>
+      <span class="head-note">Engineering surfaced the constraint that shaped the entire panel: Diagnostics can't work the same way for every content type.</span>
+    </header>
+
+    <div class="type-strategies" aria-label="Detection strategy per content type">
+      <div class="type-strategy type-strategy--play">
+        <span class="method">strategy · play-based</span>
+        <h4>Flows</h4>
+        <p>A Flow is a sequence of steps. A broken step only reveals itself when the flow is triggered by an author or user action.</p>
+      </div>
+      <div class="type-strategy type-strategy--upfront">
+        <span class="method">strategy · upfront</span>
+        <h4>Smart Tips + Beacons + Launchers</h4>
+        <p>Render on page load based on display rules. Detection can happen the moment the tab opens.</p>
+      </div>
+      <div class="type-strategy type-strategy--care">
+        <span class="method">strategy · with care</span>
+        <h4>Pop-ups</h4>
+        <p>A Pop-up with <code>occurrence: once</code> won't re-fire on re-visit. Flagging that as a "failure" would misdiagnose correct behaviour.</p>
+      </div>
+      <div class="type-strategy type-strategy--upfront">
+        <span class="method">strategy · upfront</span>
+        <h4>Content on this URL</h4>
+        <p>Whether content is scoped to the current URL is deterministic. Non-applicable content moves to <em>Not on this page</em>.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <dl>
+        <dt>eng brought</dt>
+        <dd>The three-strategies constraint, named early. Without it we would have shipped a single "scan the page" button that misdiagnosed pop-ups and gave nothing on flows.</dd>
+        <dt>I brought</dt>
+        <dd>The UI reconciliation — one consistent tab per content type, with detection running the right way underneath. The complexity stays in the code, not on the surface.</dd>
+        <dt>trade-off named</dt>
+        <dd>Authors have to trigger flows to see step-level errors. That's exposed in the empty state for the Flows section: <em>Play a flow to check its steps.</em> Honest, not hidden.</dd>
+      </dl>
+    </div>
+
+    <!-- =====================================================
+         4 · TRIED AND CUT
+         ===================================================== -->
+
+    <header class="section-head">
+      <span class="provenance">[Figma + eng review · early Q3 2024]</span>
+      <h2>Two ideas we removed.</h2>
+      <span class="head-note">Both looked right in the room. Both broke against the content-type constraint.</span>
+    </header>
+
+    <div class="cut-ideas">
+      <div class="cut-idea">
+        <span class="cut-idea-tag">idea 1</span>
+        <h3>A global list of all created content with issues attached.</h3>
+        <p class="reason">Cut because content is contextual to a URL. An author needs to know <em>where</em> the issue lives, not just that it exists. A global list without URL context makes triage harder, not easier — it turns diagnosis into a scavenger hunt.</p>
+      </div>
+      <div class="cut-idea">
+        <span class="cut-idea-tag">idea 2</span>
+        <h3>A "Diagnose" button that scans the page and reports issues.</h3>
+        <p class="reason">Cut because the button treats all content types the same. Scanning can't detect Flow step failures (they need play). Scanning Pop-ups with <code>occurrence: once</code> would produce false positives. <em>One button couldn't respect three logics.</em></p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Cutting either was easier because engineering had named the constraints upfront. The cuts weren't taste; they were the honest engineering reality applied to the design. Both ideas would have shipped a tool that demoed well and misled authors at scale.</p>
+    </div>
+
+    <!-- =====================================================
+         5 · WHAT WE DESIGNED
+         ===================================================== -->
+
+    <header class="section-head">
+      <span class="provenance">[Figma · design decisions · Q3 2024]</span>
+      <h2>A tab inside Preview Mode.</h2>
+      <span class="head-note">Preview Mode was the surface. The next question was the container shape — modal, overlay, separate route, or tab. Each broke the loop differently.</span>
+    </header>
+
+    <div class="prose">
+      <p><strong>Why a tab, not something else.</strong> A modal blocks the preview — the author can't check the content while diagnosing. An overlay obscures the page — the author can't see what they're diagnosing. A separate route breaks Studio's context — the author leaves the surface, which is the failure mode we'd just committed to avoiding. A tab sat alongside the preview, matched Studio's existing content-organization pattern, and let auto-navigation feel like part of the flow rather than an intrusion. Tab won on all four criteria: <em>persistent, non-blocking, familiar, and native to Studio.</em></p>
+      <p>Five design decisions came out of that surface commitment.</p>
+    </div>
+
+    <section class="numbered">
+      <ol>
+        <li><p><strong>Diagnostics is a tab, not a separate surface.</strong> It lives inside Preview Mode. Enabling Preview Mode auto-navigates the author there — the assumption being: if you're previewing, you might be checking for issues.</p></li>
+        <li><p><strong>Categorized by content type, same as creation.</strong> Flows, Smart Tips, Beacons, Launchers, Pop-ups — the same taxonomy authors already knew from building. No new mental model to learn.</p></li>
+        <li><p><strong>Applicable content shows on the page; the rest goes to <em>Not on this page.</em></strong> This makes the URL scoping explicit and answers Efraim's coverage question at the same time.</p></li>
+        <li><p><strong>Search by content type and issue type.</strong> A power-user path for authors managing many pieces at once.</p></li>
+        <li><p><strong>Notification banner for the minimized case.</strong> If Studio is minimized while previewing and a flow step fails, a banner surfaces at the top of the customer's browser. One click restores Studio to the Diagnostics tab, already opened to the failure.</p></li>
+      </ol>
+    </section>
+
+    <div class="shipped-grid" aria-label="Shipped Diagnostics tab — four key states">
+      <figure>
+        <img src="../images/diagnostics/ds-overview.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-overview.png');"
+             alt="Default view — Diagnostics tab with all content types." />
+        <figcaption><strong>1. Default view</strong>Content types listed for the current page.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/ds-not-on-page.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-not-on-page.png');"
+             alt="Not on this page." />
+        <figcaption><strong>2. Not on this page</strong>Content scoped to other URLs surfaces here.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/ds-flow-diagnose.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-flow-diagnose.png');"
+             alt="Flow diagnostics." />
+        <figcaption><strong>3. Flow diagnose · step-by-step</strong>Failed step is described in creator language, with fix path attached.</figcaption>
+      </figure>
+      <figure>
+        <img src="../images/diagnostics/ds-onboarding.png"
+             onerror="this.onerror=null;this.removeAttribute('src');this.alt='';this.closest('figure').setAttribute('data-placeholder','ds-onboarding.png');"
+             alt="First-run onboarding." />
+        <figcaption><strong>4. First-run</strong>Auto-navigated to on Preview Mode enable. One anchored tooltip. No tour.</figcaption>
+      </figure>
+    </div>
+
+    <!-- =====================================================
+         6 · TWO HAPPY PATHS
+         ===================================================== -->
+
+    <header class="section-head">
+      <span class="provenance">[design walkthroughs · Q3 2024]</span>
+      <h2>Two happy paths, one panel.</h2>
+      <span class="head-note">The Flow author reaches Diagnostics after a step fails during play. The Smart Tips author opens Diagnostics first — the issues are already visible.</span>
+    </header>
+
+    <div class="happy-paths" aria-label="Two happy paths through Diagnostics">
+      <div class="flow">
+        <h3>Fixing a Flow step</h3>
+        <span class="flow-method">strategy · play-based</span>
+        <ol>
+          <li>Create a flow.</li>
+          <li>Enable Preview Mode.</li>
+          <li>Play the flow.</li>
+          <li><strong>Step 3 fails.</strong></li>
+          <li>Open Diagnostics.</li>
+          <li>Read the issue in creator language.</li>
+          <li>Fix the step (if author-fixable).</li>
+          <li>Save the flow.</li>
+          <li>Re-preview to verify green.</li>
+        </ol>
+      </div>
+      <div class="flow">
+        <h3>Fixing a Smart Tip</h3>
+        <span class="flow-method">strategy · upfront</span>
+        <ol>
+          <li>Create Smart Tips.</li>
+          <li>Open Diagnostics.</li>
+          <li>Open the Smart Tips accordion.</li>
+          <li><strong>See the failed ones surfaced upfront.</strong></li>
+          <li>Open one.</li>
+          <li>Read the issue in creator language.</li>
+          <li>Fix.</li>
+          <li>Save.</li>
+          <li>Re-preview to verify green.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>Same panel. Two entry patterns, matching how each content type actually behaves. Same fix affordance underneath, so authors don't have to relearn the interaction when they move between content types.</p>
+    </div>
+
+    <!-- =====================================================
+         7 · CHALLENGES
+         ===================================================== -->
+
+    <header class="section-head">
+      <span class="provenance">[from deck · slide 48 · challenges named at project start]</span>
+      <h2>What made this hard.</h2>
+      <span class="head-note">Three friction points visible from week one that shaped downstream decisions.</span>
+    </header>
+
+    <section class="numbered">
+      <ol>
+        <li><p><strong>Enterprise-customer recruiting was slow.</strong> 5–7 users per method was the ceiling, not the target. Most testing went to Muriel-side (L&amp;D). Efraim's coverage view — a Phase 2 candidate — stayed thin on validation as a result.</p></li>
+        <li><p><strong>Engineering was split across two projects.</strong> Not all engineers attended every design review. The content-type strategy constraint surfaced from engineers who joined late; if it had surfaced in week two instead of week six, we would have saved a full design cycle.</p></li>
+        <li><p><strong>The design-system pod was mid-overhaul.</strong> They couldn't absorb a five-state status pill contribution on our timeline. Shipping the workaround was tactical; the DS pod shipped the proper primitive two months after launch.</p></li>
+      </ol>
+    </section>
+
+    <!-- =====================================================
+         8 · RECEIPTS + SUPPORT TEAM OUTCOME
+         ===================================================== -->
+
+    <header class="section-head">
+      <span class="provenance">[shipped metrics · Q1–Q2 2025 · pre-launch usability test · Support team debrief]</span>
+      <h2>What the first two quarters said.</h2>
+    </header>
+
+    <div class="receipts">
+      <div class="receipt">
+        <div class="figure">−33%</div>
+        <span class="label"><strong>Tier-1 tickets</strong> in content-not-displaying, Q1 post-launch. Held in Q2.</span>
+      </div>
+      <div class="receipt">
+        <div class="figure">−20%</div>
+        <span class="label"><strong>Screen-share requests</strong> in the same category.</span>
+      </div>
+      <div class="receipt">
+        <div class="figure">82</div>
+        <span class="label"><strong>SUS score</strong> from pre-launch usability testing.</span>
+      </div>
+      <div class="receipt">
+        <div class="figure">0</div>
+        <span class="label"><strong>Net-new UI patterns</strong> introduced for customers to learn.</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>The Support team's own read was clearer than any dashboard. Their per-ticket RCA time dropped — the diagnosis often arrived pre-attached to the escalation, so they were starting mid-investigation rather than at the top. The tickets that still came in had shifted toward Bucket 2, the technical issues authors couldn't fix themselves. Bucket 1 issues — display rules, selectors, stages, occurrence, page-scoping — mostly stopped arriving. Support went back to doing engineering work instead of translation work, which was the appreciation they voiced in the retro: <em>the tickets we're getting are the ones we should have been getting all along.</em></p>
+      <p>Two quarters isn't enough to call the ticket drop durable. I'd want four before treating it as a baseline. The Support team outcome is the one I trust most — it's the read from the people who lived inside the old workflow every day.</p>
+    </div>
+
+    <!-- =====================================================
+         9 · UNSHIP + 2026 LENS
+         ===================================================== -->
+
+    <section class="lens-2026">
+
+      <header class="section-head">
+        <span class="provenance">[2026 reframing · what I'd unship, and what I'd build today]</span>
+        <h2>What I'd unship, and what I'd design instead today.</h2>
+      </header>
+
+      <div class="prose">
+        <p>Three things from the shipped product I'd change now:</p>
+      </div>
+
+      <section class="numbered">
+        <ol>
+          <li><p><strong>The auto-navigation to Diagnostics on Preview Mode enable</strong> — right assumption most of the time, wrong when the author is previewing routine changes and doesn't want a diagnostic surface. Should defer to a discoverable badge on first visit, auto-nav on second.</p></li>
+          <li><p><strong>The pill workaround</strong> — right tactical move, wrong long-term primitive. Co-design with DS earlier next time.</p></li>
+          <li><p><strong>The Pop-up occurrence-once handling</strong> — currently silent (we don't diagnose these). Better: surface an <em>occurrence-satisfied</em> state so authors understand why the pop-up isn't firing, without misdiagnosing it.</p></li>
+        </ol>
+      </section>
+
+      <div class="prose">
+        <p>The larger honest note: the 2024 product is a tab inside Preview Mode that the author opens to inspect. In 2026, that shape is no longer the right one.</p>
+      </div>
+
+      <div class="lens-shifts">
+        <div class="lens-shift">
+          <div class="from-to"><span class="from">on-demand</span><span class="arrow">→</span> Continuous</div>
+          <p>Background watcher. The panel opens because the system invited it, not because the author suspected.</p>
+        </div>
+        <div class="lens-shift">
+          <div class="from-to"><span class="from">navigate to a tab</span><span class="arrow">→</span> Conversational</div>
+          <p><em>Why isn't my onboarding showing for new sales reps?</em> The tab becomes one surface for the agent, not the product.</p>
+        </div>
+        <div class="lens-shift">
+          <div class="from-to"><span class="from">per-item</span><span class="arrow">→</span> Cross-content</div>
+          <p>Reason across the journey. <em>This Flow fails because the Smart Tip before it stopped firing last week.</em></p>
+        </div>
+        <div class="lens-shift">
+          <div class="from-to"><span class="from">bucket 2 escalates</span><span class="arrow">→</span> The diagnosis is the ticket</div>
+          <p>Support reads the agent's analysis instead of running their own. Technical issues escalate <em>with the RCA already done</em>.</p>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>The 2024 product is a tab authors open. The 2026 product is an agent that opens the tab for them when it matters — and files the ticket itself when it doesn't.</p>
+      </div>
+
+    </section>
+
+    <!-- =====================================================
+         10 · CLOSING
+         ===================================================== -->
+
+    <p class="closing-note">
+      Diagnostics taught me one thing that travelled to every project after: <em>let the engineering constraint be the design brief</em>. The three detection strategies weren't the enemy of the design — they were the shape of it. The panel that shipped is honest about that.
+    </p>
+
+    <p class="editorial-note">
+      Real images live: <code>prd/image1.png</code>, <code>prd/image4.png</code>, <code>prd/image6–9.png</code> (Content Inspector, debug command, competitor debuggers).<br>
+      Still needed in <code>/images/diagnostics/</code>: persona exports (Muriel, Efraim), shipped-screen exports (ds-overview, ds-not-on-page, ds-flow-diagnose, ds-onboarding). Scrub <code>J&amp;J_Salesforce_demo</code> from shipped screens before publish.
+    </p>
+
+    <div class="mark" aria-hidden="true"></div>
+
+    <div class="nextstudy">
+      <span class="label">Next</span>
+      <a href="atlas.html">Atlas — removing four years of features without removing a year of trust</a>
+    </div>
+
+  </article>
+
+  <footer class="sitefooter">
+    <div>Set in Vollkorn &amp; Public Sans.</div>
+    <div class="credits">Shipped screens · Whatfix Diagnostics, late 2024.</div>
+  </footer>
+
+</div>
+
+<script src="../scripts/cursor.js" defer></script>
+
+</body>
+</html>
