@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98 114" fill="none" aria-hidden="true">
+  <defs>
+    <clipPath id="mark-h-clip">
+      <rect width="72" height="114" />
+    </clipPath>
+    <clipPath id="mark-dot-clip">
+      <rect x="74" y="89" width="25" height="25" />
+    </clipPath>
+  </defs>
+  <image
+    class="siteheader__mark-h"
+    href="h-mark.png"
+    x="-21"
+    y="-12"
+    width="141"
+    height="150"
+    clip-path="url(#mark-h-clip)"
+  />
+  <image
+    class="siteheader__mark-dot"
+    href="h-mark.png"
+    x="-21"
+    y="-12"
+    width="141"
+    height="150"
+    clip-path="url(#mark-dot-clip)"
+  />
+</svg>

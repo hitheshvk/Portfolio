@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Hithesh</title>
+  <script src="../scripts/tab-title.js"></script>
+  <meta name="description" content="Whatfix, 2025. Authors kept five to ten tabs open to create and deploy content. Studio redesign puts the full red route inside the extension." />
+  <meta name="theme-color" content="#FDFCFC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../images/brand/h-mark.png" type="image/png" />
+  <link rel="stylesheet" href="../styles.css?v=garri125" />
+  <link rel="stylesheet" href="../styles/study-diagnostics.css?v=52" />
+  <link rel="stylesheet" href="../styles/page-loader.css?v=6" />
+  <style>
+    html.is-page-loading { overflow: hidden; background: #fdfcfc; }
+    html.is-page-loading body > :not(.page-loader) { visibility: hidden; }
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fdfcfc;
+    }
+  </style>
+  <script>
+    (function(){try{if(sessionStorage.getItem("page-loader-nav")==="1"||document.documentElement.classList.contains("is-page-loading")){document.documentElement.classList.add("is-page-loading");}}catch(e){}})();
+  </script>
+</head>
+<body class="study study--studio">
+<script>
+  (function () {
+    try {
+      var unlocked = sessionStorage.getItem("study-unlock:studio-redesign") === "1";
+      document.body.classList.add(unlocked ? "study--unlocked" : "study--locked");
+    } catch (e) {
+      document.body.classList.add("study--locked");
+    }
+  })();
+</script>
+
+<script src="../scripts/page-loader.js?v=8"></script>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="siteheader siteheader--dock">
+  <div class="siteheader__inner">
+    <a href="../index.html" class="siteheader__mark" aria-label="Hithesh home">
+      <svg class="siteheader__mark-svg" viewBox="0 0 98 114" width="28" height="24" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="mark-h-clip"><rect width="72" height="114" /></clipPath>
+          <clipPath id="mark-dot-clip"><rect x="74" y="89" width="25" height="25" /></clipPath>
+        </defs>
+        <image class="siteheader__mark-h" href="../images/brand/h-mark.png" x="-21" y="-12" width="141" height="150" clip-path="url(#mark-h-clip)" />
+        <image class="siteheader__mark-dot" href="../images/brand/h-mark.png" x="-21" y="-12" width="141" height="150" clip-path="url(#mark-dot-clip)" />
+      </svg>
+    </a>
+    <nav class="siteheader__nav" aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+      <a class="siteheader__nav-resume" href="../files/Hithesh-Senior-Product-Designer_2026.pdf" download="Hithesh-Senior-Product-Designer_2026.pdf">Resume<svg class="siteheader__nav-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-rails study-rails">
+  <span class="grid-dot grid-dot--tl" aria-hidden="true"></span>
+  <span class="grid-dot grid-dot--tr" aria-hidden="true"></span>
+  <div class="study-shell">
+
+  <main id="main">
+  <a href="../index.html" class="case-card__cta case-card__cta--tertiary page-back" aria-label="Back to home">
+    <span class="case-card__cta-bg" aria-hidden="true"></span>
+    <span class="case-card__cta-text case-card__cta-text--default">
+      <svg class="case-card__cta-icon case-card__cta-icon--back" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      Back to home
+    </span>
+  </a>
+
+  <section class="study-title">
+    <h1><span class="study-title__name">Studio</span><span class="study-title__sep"> · </span><span class="study-title__line">Reimagining Whatfix content creation</span></h1>
+    <p class="dek">Content creators were opening five to ten Whatfix tabs to finish one deployment. Creation lived in the extension. Everything else lived in the dashboard. This is the redesign that folded the red route into one in-context surface.</p>
+    <p class="dateline"><span>Whatfix</span> · 2025</p>
+  </section>
+
+  <div class="study-showcase" aria-label="Shipped Studio UI">
+    <div class="study-showcase__inner">
+      <figure class="study-showcase__shot">
+        <img
+          src="../images/work/studio-showcase-left.png?v=1"
+          alt="Studio editor with Guide, Show, Ask and Analyze tabs and the content management list."
+          loading="eager"
+        />
+      </figure>
+      <figure class="study-showcase__shot">
+        <img
+          src="../images/work/studio-panel.png?v=2"
+          alt="Studio Get Started screen with Use case and Type paths into Readymade content, Flow, Pop-up, Tooltip and Beacon."
+          loading="eager"
+        />
+      </figure>
+      <figure class="study-showcase__shot">
+        <img
+          src="../images/work/studio-showcase-right.png?v=1"
+          alt="Studio content type cards for Readymade content, Flow, Pop-up and Tooltip creation."
+          loading="eager"
+        />
+      </figure>
+    </div>
+  </div>
+
+  <div class="intro-blocks">
+  <p class="the-bet">
+    Before this redesign, Studio did one job well: create content. Editing, previewing, staging, analytics, and bulk management all required leaving Studio for the dashboard. The bet was to keep authors on the application they were actually authoring for, and bring the rest of the jobs to them. <strong>Guide, Show, Ask, Analyze</strong> reframed the surface around intent, not content type. One panel. The full deployment loop.
+  </p>
+
+  <p class="team-credit">
+    <strong>The team.</strong> A designer (me), a PM, an EM, twelve engineers, and a researcher on-call. Stakeholders spanned all of R&D. Timeline was roughly three months for Phase 1, with a phased roadmap because Rome wasn't built in a day.
+  </p>
+  </div>
+
+  <nav class="toc" aria-label="Case study sections">
+    <ol>
+      <li><a href="#discovery">Discovery</a></li>
+      <li><a href="#inquiry">Inquiry</a></li>
+      <li><a href="#concepts">Concepts</a></li>
+      <li><a href="#cuts">What we cut</a></li>
+      <li><a href="#design">The design</a></li>
+      <li><a href="#paths">Happy paths</a></li>
+      <li><a href="#challenges">Challenges</a></li>
+      <li><a href="#receipts">Receipts</a></li>
+      <li><a href="#lens">2026 lens</a></li>
+    </ol>
+  </nav>
+
+  <article class="study-article">
+
+    <section class="study-product study-product--visual" aria-label="What Whatfix does">
+      <div class="study-product__grid">
+        <figure class="study-product__card">
+          <img
+            src="../images/work/flow.png"
+            data-full-src="../images/work/flow.png"
+            alt="Whatfix Flow guiding a user step-by-step through an enterprise application."
+            loading="lazy"
+          />
+          <figcaption><strong>Flows</strong>Step-by-step walkthroughs that play on the target app when a user needs help completing a task.</figcaption>
+        </figure>
+        <figure class="study-product__card">
+          <img
+            src="../images/work/beacon.png"
+            data-full-src="../images/work/beacon.png"
+            alt="Whatfix Beacon highlighting a page element to draw attention without blocking the UI."
+            loading="lazy"
+          />
+          <figcaption><strong>Beacons</strong>Pulsing indicators on page elements that signal where guidance lives without interrupting the workflow.</figcaption>
+        </figure>
+        <figure class="study-product__card">
+          <img
+            src="../images/work/popup.png"
+            data-full-src="../images/work/popup.png"
+            alt="Whatfix Pop-up surfacing a contextual message inside the host application."
+            loading="lazy"
+          />
+          <figcaption><strong>Pop-ups</strong>Contextual messages that appear inside the host app to announce changes, nudge behaviour, or surface help.</figcaption>
+        </figure>
+      </div>
+
+      <div class="study-product__intro">
+        <p class="study-product__label">Context</p>
+        <h2 class="study-product__title">What Whatfix does.</h2>
+        <p class="study-product__lede">Whatfix is a digital adoption platform. Authors build in-product guidance inside their customers' enterprise applications (Salesforce, SAP, internal tools) and deploy it without engineering changes. Content creators work in a browser extension called Studio; end users see flows, tips, beacons, and pop-ups overlaid on the live product.</p>
+      </div>
+    </section>
+
+    <section class="section" data-motion="section" id="discovery">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">01</span>· Discovery</span>
+        <h2>Five tabs to finish one job.</h2>
+        <p class="section-lede">Customer feedback was consistent before we had a solution shape: authors lacked confidence because the workflow had too many front doors.</p>
+      </header>
+
+      <div class="prose">
+        <p>When I joined the panel workstream, the creation extension was technically strong and strategically narrow, but only for creation. Preview, stage changes, analyze performance, bulk-edit tags, or move content between folders meant opening the dashboard in another tab, finding the same asset again, and hoping context survived the jump.</p>
+        <p>Even expert users described the product as overly technical: multiple windows, repeated navigation, and no single place that answered <strong>Where is my work and what do I do next?</strong> Verbatim from research: <strong>"I usually have five to ten tabs of Whatfix open when I'm working on content."</strong></p>
+      </div>
+
+      <div class="preview-modes preview-modes--lead" aria-label="Three surfaces authors switched between before Studio redesign">
+        <div class="preview-modes__lead">
+          <span class="preview-modes__figure">5–10</span>
+          <p class="preview-modes__lede">Whatfix tabs open during a typical authoring session. Not power-user behaviour. The workflow forced it.</p>
+        </div>
+        <div class="preview-mode preview-mode--used">
+          <span class="num">01</span>
+          <div class="name">Studio extension</div>
+          <p>Creation and in-app editing. Strong at building, weak at everything after save.</p>
+        </div>
+        <div class="preview-mode">
+          <span class="num">02</span>
+          <div class="name">Dashboard</div>
+          <p>Deployment, analytics, bulk actions, folder management. Disconnected from the page authors were authoring on.</p>
+        </div>
+        <div class="preview-mode">
+          <span class="num">03</span>
+          <div class="name">Preview surfaces</div>
+          <p>Scattered preview entry points per content type. Fast checks, no shared mental model.</p>
+        </div>
+      </div>
+
+      <div class="prose prose--callout">
+        <p><strong>Objective.</strong> Enhance the current red-route for content deployment without breaking the in-context authoring model that made Studio valuable in the first place. The creation tool couldn't stay a single-function island while the product scaled.</p>
+      </div>
+
+      <p class="section-lede">Two personas carried most of the discovery load. Both non-technical; both punished by tab-switching.</p>
+
+      <div class="pair pair--doc">
+        <figure>
+          <img src="../images/work/studio-showcase-left.png?v=1"
+               alt="Studio management list showing flows and guidance content with publish states." loading="lazy" />
+          <figcaption><strong>L&amp;D Trainer</strong>Builds learning paths and training flows. Needs to create, preview, and publish without learning three products.</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/work/studio-showcase-right.png?v=1"
+               alt="Studio content type picker with Readymade content, Flow, Pop-up and Tooltip options." loading="lazy" />
+          <figcaption><strong>Information Developer</strong>Owns support content across many pages. Loses time every time folder management pulls them back to the dashboard.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="study-lock-boundary" data-study-id="studio-redesign">
+      <div class="study-lock-gate" id="study-lock-gate">
+        <div class="study-lock-gate__fade" aria-hidden="true"></div>
+        <div class="study-lock-gate__panel">
+          <p class="study-lock-gate__eyebrow">NDA protected</p>
+          <p class="study-lock-gate__lede">The rest of this case study includes shipped UI, research artifacts, and metrics under confidentiality.</p>
+          <button type="button" class="case-card__cta case-card__cta--tertiary study-lock-gate__btn" id="study-lock-open" aria-haspopup="dialog">
+            <span class="case-card__cta-bg" aria-hidden="true"></span>
+            <span class="case-card__cta-text case-card__cta-text--default">
+              <span>Unlock case study</span>
+              <svg class="case-card__cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="study-protected-content" id="study-protected-content" inert aria-hidden="true">
+
+    <section class="section" data-motion="section" id="inquiry">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">02</span>· Inquiry</span>
+        <h2>What does the journey actually look like?</h2>
+        <p class="section-lede">Contextual inquiries replaced assumptions. Authors didn't want more Whatfix. They wanted less of it between them and the job.</p>
+      </header>
+
+      <div class="prose">
+        <p>Customers had explicitly asked to edit inside Studio. Usability testing quantified the pain: switching products inflated task time. The open questions were sharper than the feature requests:</p>
+        <ul>
+          <li>What does authoring look like from creation through deployment?</li>
+          <li>What changes are authors making on the dashboard that Studio should absorb?</li>
+          <li>What expansion areas would matter in two years, not just two sprints?</li>
+        </ul>
+      </div>
+
+      <div class="split split--open">
+        <div class="bucket bucket--fixable">
+          <span class="bucket-tag">Finding 01 · Frustration</span>
+          <span class="bucket-title">Split capabilities bred mistrust.</span>
+          <ul>
+            <li>Creation and preview lived in different products</li>
+            <li>Deployment and editing required dashboard context switches</li>
+            <li>Authors re-found the same content repeatedly</li>
+          </ul>
+        </div>
+        <div class="bucket">
+          <span class="bucket-tag">Finding 02 · Preference</span>
+          <span class="bucket-title">Stay on the host app.</span>
+          <ul>
+            <li>Authors spend their day inside customer applications</li>
+            <li>Studio wins when it feels like part of that surface</li>
+            <li>Every dashboard detour reads as product overhead</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p>The reframing question that unlocked the roadmap: <strong>What if everything lived in one place?</strong> Not as a thought experiment. As a testable concept with trade-offs named upfront: panel space, technical weight, and the risk of turning Studio into a cramped dashboard clone.</p>
+      </div>
+    </section>
+
+    <section class="section" data-motion="section" id="concepts">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">03</span>· Concepts</span>
+        <h2>All jobs in Studio won the room.</h2>
+        <p class="section-lede">Concept testing before build. Five to seven enterprise authors per method. Click-and-explore with think-aloud.</p>
+      </header>
+
+      <div class="strategies">
+        <div class="strategy">
+          <div class="strategy-method">Voted</div>
+          <div class="strategy-content">
+            <h4>Concept 1.1 · All JTBD in Studio</h4>
+            <p>Create, edit, preview, deploy, and analyze inside the extension. Streamlined experience. Authors stay on the host application. Trade-off: space constraints and engineering weight.</p>
+          </div>
+        </div>
+        <div class="strategy">
+          <div class="strategy-method">Rejected</div>
+          <div class="strategy-content">
+            <h4>Concept 2.1 · All JTBD in dashboard</h4>
+            <p>More canvas area, but element selection breaks if authoring leaves the in-app surface. Authors still live in Whatfix instead of the customer product.</p>
+          </div>
+        </div>
+        <div class="strategy">
+          <div class="strategy-method">Hybrid</div>
+          <div class="strategy-content">
+            <h4>Concept 1.2 · Dashboard as extension</h4>
+            <p>Promising on paper, technically heavy, and it duplicated navigation patterns authors already rejected.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <p><strong>Concept testing insights.</strong> Content creators liked a unified surface to create, manage, and analyze. Mechanical controls (expand, move left, minimize) needed to stay grouped; isolating "close" confused everyone. Dragging scored as unnecessary. A floating action button tested poorly: authors didn't want another widget cluttering the workspace they were trying to guide users through.</p>
+      </div>
+
+      <figure class="doc-figure">
+        <img src="../images/work/studio-panel.png?v=2"
+             alt="Studio Get Started page with Guide, Show, Ask and Analyze tabs and Use case versus Type entry paths." loading="lazy" />
+        <figcaption><strong>Winning direction · Get Started</strong>Solution-oriented entry: pick a use case or a content type, then land in Readymade content, Flow, Pop-up, Tooltip, or Beacon without learning five separate front doors.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section" data-motion="section" id="cuts">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">04</span>· Removed</span>
+        <h2>Three ideas we cut.</h2>
+        <p class="section-lede">Concept testing cut ideas early so engineering didn't pay for them later.</p>
+      </header>
+
+      <div class="cuts">
+        <article class="cut">
+          <p class="cut-idea">A customizable floating action button for quick actions.</p>
+          <p class="cut-reason">Authors rejected another persistent widget on the host application. Studio's value is guidance, not more chrome.</p>
+        </article>
+        <article class="cut">
+          <p class="cut-idea">Free-form panel dragging.</p>
+          <p class="cut-reason">Mechanical actions helped when predictable. Dragging added motor cost without speeding tasks.</p>
+        </article>
+        <article class="cut">
+          <p class="cut-idea">Dashboard-only management as the long-term home.</p>
+          <p class="cut-reason">More space, wrong context. Element selection and in-app authoring are non-negotiable for Studio.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" data-motion="section" id="design">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">05</span>· Design</span>
+        <h2>Three changes, one surface.</h2>
+        <p class="section-lede">Phase 1 shipped the spine. Phase 2 filled in the long tail. The design language stayed consistent across both.</p>
+      </header>
+
+      <div class="principles principles--stack">
+        <div class="principle">
+          <span class="num">01</span>
+          <p><strong>Support editing, preview, deployment, and analysis in the extension.</strong> Manage guidance, search, bulk select, and open-in-dashboard only when the task genuinely needs more canvas.</p>
+        </div>
+        <div class="principle">
+          <span class="num">02</span>
+          <p><strong>Expand the panel for deep work.</strong> Move left, expand, and minimize as grouped mechanical actions. List-based folder navigation beat breadcrumbs by 2.3 seconds per task in usability testing.</p>
+        </div>
+        <div class="principle">
+          <span class="num">03</span>
+          <p><strong>Get Started orients by use case or type.</strong> <strong>Guide · Show · Ask · Analyze</strong> tabs reframe the product around what authors are doing, not which primitive they picked first.</p>
+        </div>
+      </div>
+
+      <figure class="doc-figure">
+        <img src="../images/work/studio-showcase-left.png?v=1"
+             alt="Studio Guide tab with content list, search, bulk actions and publish stages." loading="lazy" />
+        <figcaption><strong>Shipped · Management in panel</strong>Authors edit flows, beacons, and smart tips, preview individual pieces, bulk tag, move to folders, and jump to dashboard only when necessary.</figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../images/work/studio-panel.png?v=2"
+             alt="Studio Analyze tab concept with performance metrics for self-help content." loading="lazy" />
+        <figcaption><strong>System intent · Four tabs</strong>Guide for building, Show for preview-in-context, Ask for content questions, Analyze for performance. Consolidation, not net-new capability.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <p><strong>Phased on purpose.</strong> Phase 1 covered editing for flows, beacons, smart tips, and launchers; bulk tagging; folder moves; preview; and dashboard link-outs. Phase 2 added pop-ups, surveys, translations, archiving, stage transitions, and moving preview under manage. Trade-off we accepted in Phase 1: retaining draft/ready/production tabs for stages because a cleaner model wasn't shippable yet.</p>
+      </div>
+    </section>
+
+    <section class="section" data-motion="section" id="paths">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">06</span>· Happy paths</span>
+        <h2>Two paths, one panel.</h2>
+        <p class="section-lede">Intent-first for newcomers. Type-first for experts. Same deployment loop underneath.</p>
+      </header>
+
+      <div class="paths">
+        <div class="path">
+          <h3>Onboarding a new flow</h3>
+          <span class="path-method">Use case</span>
+          <ol>
+            <li>Open Studio on the host application.</li>
+            <li>Choose <strong>Onboarding</strong> on Get Started.</li>
+            <li>Start from Readymade content or build a Flow.</li>
+            <li>Preview in Show without leaving the page.</li>
+            <li>Stage to Ready, then Published.</li>
+            <li>Check engagement in Analyze.</li>
+          </ol>
+        </div>
+        <div class="path">
+          <h3>Fixing a published smart tip</h3>
+          <span class="path-method">Type</span>
+          <ol>
+            <li>Open Studio on the target URL.</li>
+            <li>Jump straight to <strong>Smart Tip</strong> from Type.</li>
+            <li>Find the item in Manage guidance.</li>
+            <li>Edit in panel, preview inline.</li>
+            <li>Re-publish without opening the dashboard.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-motion="section" id="challenges">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">07</span>· Challenges</span>
+        <h2>What made this hard.</h2>
+        <p class="section-lede">Speed had a price. We shipped Phase 1 knowing Phase 2 would rewrite parts of it.</p>
+      </header>
+
+      <div class="principles principles--stack">
+        <div class="principle">
+          <span class="num">01</span>
+          <p><strong>Enterprise recruiting was slow.</strong> Diverse personas and experience levels made five to seven users per method a ceiling, not a comfort zone. Progress waited on calendar, not conviction.</p>
+        </div>
+        <div class="principle">
+          <span class="num">02</span>
+          <p><strong>Design system rigidity protected velocity.</strong> Strict component reuse meant passing on local improvements that would have made management denser but more readable.</p>
+        </div>
+        <div class="principle">
+          <span class="num">03</span>
+          <p><strong>Engineering attention was fragmented.</strong> Not every developer joined syncs. Late opinions on panel mechanics cost us a cycle we couldn't afford in a three-month window.</p>
+        </div>
+        <div class="principle">
+          <span class="num">04</span>
+          <p><strong>Dashboard link-outs stayed confusing until the product switcher pattern.</strong> Only three of seven users completed the original link task. A/B testing in Maze showed product-switcher consistency fixed it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-motion="section" id="receipts">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">08</span>· Receipts</span>
+        <h2>What testing said before launch.</h2>
+      </header>
+
+      <div class="receipts receipts--impact receipts--quad">
+        <div class="receipt">
+          <div class="figure">84</div>
+          <span class="label"><strong>SUS score</strong> in post-concept usability testing.</span>
+        </div>
+        <div class="receipt">
+          <div class="figure">100%</div>
+          <span class="label"><strong>Task completion</strong> without escalation in the usability cohort.</span>
+        </div>
+        <div class="receipt">
+          <div class="figure">2.3s</div>
+          <span class="label"><strong>Faster folder navigation</strong> with list menus vs breadcrumbs.</span>
+        </div>
+        <div class="receipt">
+          <div class="figure">80%</div>
+          <span class="label"><strong>JTBD coverage target</strong> through the creation tool once fully phased.</span>
+        </div>
+      </div>
+
+      <div class="prose prose--follow">
+        <p>Authors completed most management tasks within two clicks once mechanical actions were grouped. Bulk select and folder moves stopped being dashboard-only rituals. Qualitative read matched the numbers: authors described Studio as one thing to learn, not five products stitched together.</p>
+        <p>Expected outcomes we tracked into development: roughly ninety percent reduction in product switching, nine-point lift against suite SUS benchmark, and full internal adoption of the new framework. I'd treat the switching metric as the one worth revisiting quarterly. It's the closest proxy to the five-tab problem we set out to kill.</p>
+      </div>
+    </section>
+
+    <section class="section" data-motion="section" id="lens">
+      <div class="lens-2026">
+        <div class="lens-2026__intro">
+          <span class="section-tag"><span class="num">09</span>· 2026 lens</span>
+          <h2>What I'd unship, and what I'd design instead today.</h2>
+          <p class="lens-2026__lede">The 2025 product is a phased panel. The 2026 product is a platform authors never have to leave.</p>
+        </div>
+
+        <div class="principles principles--stack principles--compact">
+          <div class="principle">
+            <span class="num">01</span>
+            <p><strong>Stage tabs (draft / ready / production)</strong> were a Phase 1 compromise. I'd invest earlier in a scalable status model instead of shipping debt we knew Phase 2 would rewrite.</p>
+          </div>
+          <div class="principle">
+            <span class="num">02</span>
+            <p><strong>Dashboard link-outs</strong> should have shipped with the product-switcher pattern on day one. Consistency beat cleverness.</p>
+          </div>
+          <div class="principle">
+            <span class="num">03</span>
+            <p><strong>Cold-start authors</strong> weren't in the first validation set. I'd test Scenario language with people who've never opened the old creation flow, not only authors unlearning five front doors.</p>
+          </div>
+        </div>
+
+        <div class="lens-shifts lens-shifts--cards">
+          <div class="lens-shift">
+            <div class="from-to"><span class="from">Five tabs</span><span class="to">One surface</span></div>
+            <p>Creation, preview, deploy, and analyze in the extension authors already trust.</p>
+          </div>
+          <div class="lens-shift">
+            <div class="from-to"><span class="from">Content type first</span><span class="to">Intent first</span></div>
+            <p>Get Started by use case or type. Readymade content lowers the blank-canvas penalty.</p>
+          </div>
+          <div class="lens-shift">
+            <div class="from-to"><span class="from">Phase 1 debt</span><span class="to">Platform spine</span></div>
+            <p>Archive, translations, surveys, and status modeling fold into Studio instead of routing back to the dashboard.</p>
+          </div>
+        </div>
+
+        <div class="prose lens-2026__outro">
+          <p>This project was my first roadmap win aligned to explicit KRs with leadership, and my first concept-test-before-build cycle at scale. Both practices stuck. What I'd carry forward is simpler: name the trade-off when you phase, and measure tab-switching like a product metric, not a user quirk.</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="closing-note">
+      Studio taught me that consolidation only works when you respect the surface authors are actually on. The host application is the product. Whatfix has to meet authors there, not ask them to leave for every job after save.
+    </p>
+
+    <p class="editorial-note">
+      Artifacts shown are shipped UI captures and concept-test frames from the panel redesign program. Before publish: replace placeholders with high-res exports from the final Guide, Show, Ask, and Analyze tabs and scrub any customer names from management lists.
+    </p>
+
+    <div class="nextstudy" aria-label="Next case study">
+      <article class="nextstudy-card">
+        <div class="nextstudy-card__main">
+          <header class="nextstudy-card__brand">
+            <span class="nextstudy-card__label">Next case study</span>
+            <span class="nextstudy-card__sep" aria-hidden="true">·</span>
+            <span class="nextstudy-card__meta">Whatfix · 2025</span>
+          </header>
+          <h2 class="nextstudy-card__title">Diagnostics: building a troubleshooting tool when nobody agreed on what was actually broken</h2>
+          <p class="nextstudy-card__dek">Surface missing flows and let authors debug visibility issues on their own.</p>
+        </div>
+        <div class="nextstudy-card__action">
+          <a class="case-card__cta case-card__cta--tertiary nextstudy-card__cta" href="diagnostics-v7.html" aria-label="Read Diagnostics case study">
+            <span class="case-card__cta-bg" aria-hidden="true"></span>
+            <span class="case-card__cta-text case-card__cta-text--default">
+              <span>Read case study</span>
+              <svg class="case-card__cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    </div>
+
+    </div>
+
+  </article>
+
+  </main>
+
+  </div>
+  <span class="grid-dot grid-dot--bl" aria-hidden="true"></span>
+  <span class="grid-dot grid-dot--br" aria-hidden="true"></span>
+</div>
+
+<footer class="sitefooter sitefooter--closing" aria-label="Contact and links">
+  <div class="sitefooter__stage">
+    <div class="sitefooter__top">
+      <p class="sitefooter__lede">Working on something that needs more than a quick fix?<br>I read every email.</p>
+      <button
+        type="button"
+        class="sitefooter__copy-email"
+        data-copy-email="vkhithesh@gmail.com"
+        aria-label="Copy email vkhithesh@gmail.com to clipboard"
+      >
+        <span class="sitefooter__copy-email-text">vkhithesh@gmail.com</span>
+        <span class="sitefooter__copy-email-hint" data-copy-hint>Click to copy</span>
+      </button>
+    </div>
+    <nav class="sitefooter__row" aria-label="Links">
+      <a href="https://www.linkedin.com/in/hithesh-vk-88b6b516a/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a>
+      <a href="https://dribbble.com/mr_we_kay" target="_blank" rel="noopener noreferrer">Dribbble<span class="visually-hidden"> (opens in new tab)</span></a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram<span class="visually-hidden"> (opens in new tab)</span></a>
+      <a href="../photography.html">Photography</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="study-unlock-modal" id="study-unlock-modal" role="dialog" aria-modal="true" aria-labelledby="study-unlock-title" hidden>
+  <button type="button" class="study-unlock-modal__backdrop" aria-label="Close password dialog"></button>
+  <div class="study-unlock-modal__panel">
+    <h2 class="study-unlock-modal__title" id="study-unlock-title">Unlock case study</h2>
+    <p class="study-unlock-modal__lede">Enter the 4-digit access code to view NDA-protected content.</p>
+    <form class="study-unlock-modal__form" id="study-unlock-form">
+      <label class="study-unlock-modal__label" for="study-unlock-code">Access code</label>
+      <input
+        class="study-unlock-modal__input"
+        id="study-unlock-code"
+        name="code"
+        type="password"
+        inputmode="numeric"
+        pattern="[0-9]{4}"
+        maxlength="4"
+        minlength="4"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        required
+        aria-describedby="study-unlock-error"
+        placeholder="••••"
+      />
+      <p class="study-unlock-modal__error" id="study-unlock-error" role="alert" hidden>Incorrect code. Try again.</p>
+      <div class="study-unlock-modal__actions">
+        <button type="button" class="study-unlock-modal__cancel" id="study-unlock-cancel">Cancel</button>
+        <button type="submit" class="case-card__cta case-card__cta--tertiary study-unlock-modal__submit">
+          <span class="case-card__cta-bg" aria-hidden="true"></span>
+          <span class="case-card__cta-text case-card__cta-text--default">
+            <span>Unlock</span>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="../scripts/study-lock.js?v=1"></script>
+<script src="../scripts/smooth-scroll.bundle.js?v=5"></script>
+<script src="../scripts/nav-scroll.js?v=4"></script>
+<script type="module" src="../scripts/motion-study.js?v=3"></script>
+<script src="../scripts/study-toc.js?v=2"></script>
+<script src="../scripts/study-lightbox.js?v=9"></script>
+<script defer src="../scripts/copy-email.js?v=1"></script>
+
+</body>
+</html>

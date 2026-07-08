@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+.claude/
+.vercel/
+_archive/
+images/work/New images/
+images/sellerapp/page.html

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" class="is-page-loading">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Hithesh</title>
+  <script src="scripts/tab-title.js"></script>
+  <meta name="description" content="Photography by Hithesh. iPhone, film, or professional camera on ordinary streets." />
+  <meta name="theme-color" content="#FDFCFC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="images/brand/h-mark.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css?v=garri125" />
+  <link rel="stylesheet" href="styles/photo-gallery.css?v=35" />
+  <link rel="stylesheet" href="styles/page-loader.css?v=6" />
+  <style>
+    html.is-page-loading { overflow: hidden; background: #fdfcfc; }
+    html.is-page-loading body > :not(.page-loader) { visibility: hidden; }
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fdfcfc;
+    }
+  </style>
+  <script>
+    (function(){try{if(sessionStorage.getItem("page-loader-nav")==="1"||document.documentElement.classList.contains("is-page-loading")){document.documentElement.classList.add("is-page-loading");}}catch(e){}})();
+  </script>
+</head>
+<body class="photography-page-body">
+
+<script src="scripts/page-loader.js?v=9"></script>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="siteheader siteheader--dock">
+  <div class="siteheader__inner">
+    <a href="index.html" class="siteheader__mark" aria-label="Hithesh home">
+      <svg class="siteheader__mark-svg" viewBox="0 0 98 114" width="28" height="24" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="mark-h-clip"><rect width="72" height="114" /></clipPath>
+          <clipPath id="mark-dot-clip"><rect x="74" y="89" width="25" height="25" /></clipPath>
+        </defs>
+        <image class="siteheader__mark-h" href="images/brand/h-mark.png" x="-21" y="-12" width="141" height="150" clip-path="url(#mark-h-clip)" />
+        <image class="siteheader__mark-dot" href="images/brand/h-mark.png" x="-21" y="-12" width="141" height="150" clip-path="url(#mark-dot-clip)" />
+      </svg>
+    </a>
+    <nav class="siteheader__nav" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+      <a class="siteheader__nav-resume" href="files/Hithesh-Senior-Product-Designer_2026.pdf" download="Hithesh-Senior-Product-Designer_2026.pdf">Resume<svg class="siteheader__nav-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <main id="main" class="photography-page">
+    <div class="photography-page__intro">
+      <a href="index.html#photography" class="case-card__cta case-card__cta--tertiary page-back" aria-label="Back to home">
+        <span class="case-card__cta-bg" aria-hidden="true"></span>
+        <span class="case-card__cta-text case-card__cta-text--default">
+          <svg class="case-card__cta-icon case-card__cta-icon--back" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          Back to home
+        </span>
+      </a>
+      <h1 class="photography-page__title">iPhone, film, or whatever's in hand.</h1>
+      <p class="photography-page__lede">Same streets, same slow looking. Click any frame to see it full size.</p>
+    </div>
+
+    <div class="photography-page__grid"></div>
+  </main>
+
+</div>
+
+<footer class="sitefooter sitefooter--closing" aria-label="Contact and links">
+  <div class="sitefooter__stage">
+    <div class="sitefooter__top">
+      <p class="sitefooter__lede">Working on something that needs more than a quick fix?<br>I read every email.</p>
+      <button
+        type="button"
+        class="sitefooter__copy-email"
+        data-copy-email="vkhithesh@gmail.com"
+        aria-label="Copy email vkhithesh@gmail.com to clipboard"
+      >
+        <span class="sitefooter__copy-email-text">vkhithesh@gmail.com</span>
+        <span class="sitefooter__copy-email-hint" data-copy-hint>Click to copy</span>
+      </button>
+    </div>
+    <nav class="sitefooter__row" aria-label="Links">
+      <a href="https://www.linkedin.com/in/hithesh-vk-88b6b516a/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a>
+      <a href="https://dribbble.com/mr_we_kay" target="_blank" rel="noopener noreferrer">Dribbble<span class="visually-hidden"> (opens in new tab)</span></a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram<span class="visually-hidden"> (opens in new tab)</span></a>
+      <a href="photography.html" aria-current="page">Photography</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="scripts/smooth-scroll.bundle.js?v=6"></script>
+<script src="scripts/nav-scroll.js?v=4"></script>
+<script defer src="scripts/copy-email.js?v=1"></script>
+<script defer src="scripts/photo-gallery.js?v=46"></script>
+</body>
+</html>

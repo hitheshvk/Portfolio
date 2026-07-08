@@ -1,0 +1,94 @@
+/* Full-screen page loader — adapted from Uiverse.io by maszaen */
+
+html.is-page-loading {
+  overflow: hidden;
+}
+
+html.is-page-loading body > :not(.page-loader) {
+  visibility: hidden;
+}
+
+html.is-page-loaded body > :not(.page-loader) {
+  opacity: 1;
+  transition: opacity 0.55s ease 0.08s;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper, #fdfcfc);
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.page-loader__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.page-loader__dot {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--ink, #0c0a09);
+  animation: page-loader-jump 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes page-loader-jump {
+  25% {
+    background: var(--ink, #0c0a09);
+    transform: translateY(1rem) translateX(0) scale(0.7);
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateY(3rem) translateX(-2rem) scale(0.7);
+  }
+
+  100% {
+    background: var(--ink, #0c0a09);
+    opacity: 1;
+    transform: translateY(-4rem) translateX(0) scale(0.2);
+  }
+}
+
+.page-loader__dot:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.page-loader__dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.page-loader__dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.page-loader__dot:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.page-loader__dot:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.page-loader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader {
+    display: none !important;
+  }
+
+  html.is-page-loading body > :not(.page-loader) {
+    visibility: visible;
+  }
+}

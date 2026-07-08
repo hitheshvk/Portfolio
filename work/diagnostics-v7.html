@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Hithesh</title>
+  <script src="../scripts/tab-title.js"></script>
+  <meta name="description" content="Whatfix, 2025. Four preview modes, no way for authors to debug their own content. This is the tab we shipped inside one of them." />
+  <meta name="theme-color" content="#FDFCFC" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../images/brand/h-mark.png" type="image/png" />
+  <link rel="stylesheet" href="../styles.css?v=garri125" />
+  <link rel="stylesheet" href="../styles/study-diagnostics.css?v=52" />
+  <link rel="stylesheet" href="../styles/page-loader.css?v=6" />
+  <style>
+    html.is-page-loading { overflow: hidden; background: #fdfcfc; }
+    html.is-page-loading body > :not(.page-loader) { visibility: hidden; }
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fdfcfc;
+    }
+  </style>
+  <script>
+    (function(){try{if(sessionStorage.getItem("page-loader-nav")==="1"||document.documentElement.classList.contains("is-page-loading")){document.documentElement.classList.add("is-page-loading");}}catch(e){}})();
+  </script>
+</head>
+<body class="study study--diagnostics">
+
+<script src="../scripts/page-loader.js?v=8"></script>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="siteheader siteheader--dock">
+  <div class="siteheader__inner">
+    <a href="../index.html" class="siteheader__mark" aria-label="Hithesh home">
+      <svg class="siteheader__mark-svg" viewBox="0 0 98 114" width="28" height="24" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="mark-h-clip"><rect width="72" height="114" /></clipPath>
+          <clipPath id="mark-dot-clip"><rect x="74" y="89" width="25" height="25" /></clipPath>
+        </defs>
+        <image class="siteheader__mark-h" href="../images/brand/h-mark.png" x="-21" y="-12" width="141" height="150" clip-path="url(#mark-h-clip)" />
+        <image class="siteheader__mark-dot" href="../images/brand/h-mark.png" x="-21" y="-12" width="141" height="150" clip-path="url(#mark-dot-clip)" />
+      </svg>
+    </a>
+    <nav class="siteheader__nav" aria-label="Primary">
+      <a href="../index.html#work">Work</a>
+      <a href="../about.html">About</a>
+      <a class="siteheader__nav-resume" href="../files/Hithesh-Senior-Product-Designer_2026.pdf" download="Hithesh-Senior-Product-Designer_2026.pdf">Resume<svg class="siteheader__nav-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-rails study-rails">
+  <span class="grid-dot grid-dot--tl" aria-hidden="true"></span>
+  <span class="grid-dot grid-dot--tr" aria-hidden="true"></span>
+  <div class="study-shell">
+
+  <main id="main">
+  <a href="../index.html" class="case-card__cta case-card__cta--tertiary page-back" aria-label="Back to home">
+    <span class="case-card__cta-bg" aria-hidden="true"></span>
+    <span class="case-card__cta-text case-card__cta-text--default">
+      <svg class="case-card__cta-icon case-card__cta-icon--back" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      Back to home
+    </span>
+  </a>
+
+  <!-- Title -->
+  <section class="study-title">
+    <h1><span class="study-title__name">Diagnostics</span><span class="study-title__sep"> · </span><span class="study-title__line">Seamless troubleshooting experience</span></h1>
+    <p class="dek">Whatfix authors couldn't debug their own content. Four preview modes existed; none told an author what was wrong. This is the tab I designed inside one of them, built around the constraint that different content types can't be diagnosed the same way.</p>
+    <p class="dateline"><span>Whatfix</span> · 2025</p>
+  </section>
+
+  <!-- Hero -->
+  <div class="study-showcase" aria-label="Shipped Diagnostics UI">
+    <div class="study-showcase__inner">
+      <figure class="study-showcase__shot">
+        <img
+          src="../images/work/diagnostics-toast.png?v=5"
+          alt="Diagnostics panel in preview mode with toast explaining diagnose-while-previewing."
+          loading="eager"
+        />
+      </figure>
+      <figure class="study-showcase__shot">
+        <img
+          src="../images/work/diagnostics-error.png?v=5"
+          alt="Pop-up diagnostics explaining precedence conflict, display order, and author-facing next steps."
+          loading="eager"
+        />
+      </figure>
+      <figure class="study-showcase__shot">
+        <img
+          src="../images/work/diagnostics-steps.png?v=5"
+          alt="Flow diagnostics with step-by-step pass, fail, and pending states plus element-not-found detail."
+          loading="eager"
+        />
+      </figure>
+    </div>
+  </div>
+
+  <div class="intro-blocks">
+  <p class="the-bet">
+    Diagnostics is a dedicated tab inside Whatfix Preview Mode. Enabling Preview Mode navigates the author to it. Content is categorized the same way as in creation, with a <strong>Not on this page</strong> section for content that belongs elsewhere. Underneath, three detection strategies run in parallel because <strong>Flows need to be played to fail, smart tips can be surfaced upfront, and pop-ups need care to avoid false positives.</strong> One UI. Three logics.
+  </p>
+
+  <p class="team-credit">
+    <strong>The team.</strong> A designer (me), a PM, an EM, a UX researcher on-call, and <strong>The Support team as a discovery partner</strong>. They classified every ticket into what an author could fix and what they couldn't, which shaped the whole panel. Cross-pod partners in Engineering and the Design System pod.
+  </p>
+  </div>
+
+  <!-- TOC -->
+  <nav class="toc" aria-label="Case study sections">
+    <ol>
+      <li><a href="#discovery">Discovery</a></li>
+      <li><a href="#research">Ownership and research</a></li>
+      <li><a href="#constraint">Strategies</a></li>
+      <li><a href="#cuts">What we cut</a></li>
+      <li><a href="#design">The design</a></li>
+      <li><a href="#paths">Happy paths</a></li>
+      <li><a href="#challenges">Challenges</a></li>
+      <li><a href="#receipts">Receipts</a></li>
+      <li><a href="#lens">2026 lens</a></li>
+    </ol>
+  </nav>
+
+  <article class="study-article">
+
+    <section class="study-product study-product--visual" aria-label="What Whatfix does">
+      <div class="study-product__grid">
+        <figure class="study-product__card">
+          <img
+            src="../images/work/flow.png"
+            data-full-src="../images/work/flow.png"
+            alt="Whatfix Flow guiding a user step-by-step through an enterprise application."
+            loading="lazy"
+          />
+          <figcaption><strong>Flows</strong>Step-by-step walkthroughs that play on the target app when a user needs help completing a task.</figcaption>
+        </figure>
+        <figure class="study-product__card">
+          <img
+            src="../images/work/beacon.png"
+            data-full-src="../images/work/beacon.png"
+            alt="Whatfix Beacon highlighting a page element to draw attention without blocking the UI."
+            loading="lazy"
+          />
+          <figcaption><strong>Beacons</strong>Pulsing indicators on page elements that signal where guidance lives without interrupting the workflow.</figcaption>
+        </figure>
+        <figure class="study-product__card">
+          <img
+            src="../images/work/popup.png"
+            data-full-src="../images/work/popup.png"
+            alt="Whatfix Pop-up surfacing a contextual message inside the host application."
+            loading="lazy"
+          />
+          <figcaption><strong>Pop-ups</strong>Contextual messages that appear inside the host app to announce changes, nudge behaviour, or surface help.</figcaption>
+        </figure>
+      </div>
+
+      <div class="study-product__intro">
+        <p class="study-product__label">Context</p>
+        <h2 class="study-product__title">What Whatfix does.</h2>
+        <p class="study-product__lede">Whatfix is a digital adoption platform. Authors build in-product guidance inside their customers' enterprise applications (Salesforce, SAP, internal tools) and deploy it without engineering changes. Content creators work in a browser extension called Studio; end users see flows, tips, beacons, and pop-ups overlaid on the live product.</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         01 · DISCOVERY
+         ===================================================== -->
+    <section class="section" data-motion="section" id="discovery">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">01</span>· Discovery</span>
+        <h2>There was no tool for authors.</h2>
+        <p class="section-lede">When authors' content stopped working, the only path was escalation. There wasn't a design problem yet. There was a missing product.</p>
+      </header>
+
+      <div class="doc-grid">
+        <figure class="doc-figure">
+          <img src="../images/diagnostics/research-problem.png"
+               alt="Problem statement: users can't identify failed content, lack explanations, and rely on Support." loading="lazy" />
+          <figcaption><strong>The problem, as scoped</strong>Authors couldn't identify failed content, had no explanation for failures, and leaned on Support for everything.</figcaption>
+        </figure>
+        <figure class="doc-figure">
+          <img src="../images/diagnostics/research-users-value.png"
+               alt="Users and business value: content creators and internal DAA; reducing support tickets and RCA time." loading="lazy" />
+          <figcaption><strong>Users &amp; business value</strong>Content creators and the internal DAA team, with a measurable prize: fewer tickets, less RCA time.</figcaption>
+        </figure>
+      </div>
+
+      <div class="prose">
+        <p>When I picked up the brief in early 2024, Whatfix had no author-facing diagnostic tool. If a Smart Tip stopped firing or a Flow broke mid-step, the author had one option: file a Support ticket, wait for a screen-share, and watch a Whatfix engineer run a debug command in the developer tools of their own browser. Escalate, wait, watch.</p>
+      </div>
+
+      <div class="preview-modes preview-modes--lead" aria-label="Four preview modes in Whatfix, 2025">
+        <div class="preview-modes__lead">
+          <span class="preview-modes__figure">4</span>
+          <p class="preview-modes__lede">Preview modes existed in Whatfix. All showed the pixels. None told an author what was wrong.</p>
+        </div>
+        <div class="preview-mode preview-mode--used">
+          <span class="num">01</span>
+          <div class="name">Preview Mode</div>
+          <p>In-Studio preview on the target URL, with editing enabled. The one authors reached for most.</p>
+        </div>
+        <div class="preview-mode">
+          <span class="num">02</span>
+          <div class="name">See Live</div>
+          <p>Opens the customer's product with content overlaid in a <strong>Separate view</strong>, disconnected from Studio.</p>
+        </div>
+        <div class="preview-mode">
+          <span class="num">03</span>
+          <div class="name">Preview</div>
+          <p>Modal from the content list. Fast, but <strong>No target-URL context</strong>, so URL-scoped diagnostics would be meaningless.</p>
+        </div>
+        <div class="preview-mode">
+          <span class="num">04</span>
+          <div class="name">Launch Live Edit</div>
+          <p>For editing live production content. <strong>Wrong intent</strong>. This isn't the pre-publish check flow.</p>
+        </div>
+      </div>
+
+      <div class="prose prose--callout">
+        <p><strong>Why Preview Mode won.</strong> Not popularity: structural capability. Diagnosis, fix, and re-verify had to happen in one gesture, without leaving the surface. Preview Mode was the only mode that ran <strong>In Studio, on the target URL, with editing enabled</strong>. The criterion decided the surface: <strong>Never leave the surface to complete the loop.</strong></p>
+      </div>
+
+      <figure class="doc-figure doc-figure--wide doc-figure--feature">
+        <img
+          src="../images/work/service%20blueprint.png?v=3"
+          data-full-src="../images/work/service%20blueprint.png?v=3"
+          alt="Whatfix service blueprint showing sales pitching, customer onboarding, application analysis, content creation, and support touchpoints with failure gaps traced in red."
+          width="10810"
+          height="3403"
+          decoding="async"
+          loading="lazy"
+        />
+        <figcaption><strong>Service blueprint · End to end</strong>Sales pitching through onboarding, content creation, and live maintenance in one map. The red dashed lines trace where failures left the author journey and became Support tickets downstream.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <p>Before we framed a solution, we mapped the full service. The blueprint made the gaps legible: authors hit dead ends during creation, onboarding handoffs lost context, and maintenance had no self-serve path back to a fix. Support absorbed every break the product didn't surface.</p>
+      </div>
+
+      <div class="doc-grid">
+        <figure class="doc-figure">
+          <img src="../images/diagnostics/research-pain-points.png"
+               alt="Pain points mapped for two audiences: Customers and internal DAA." loading="lazy" />
+          <figcaption><strong>Pain points, by audience</strong>Customers and internal DAA shared the same core frustrations: time-consuming, expertise-gated, and no clarity on <strong>When</strong> or <strong>How</strong> content broke.</figcaption>
+        </figure>
+        <figure class="doc-figure">
+          <img src="../images/diagnostics/research-hmw.png"
+               alt="How-might-we statements framing the design opportunity." loading="lazy" />
+          <figcaption><strong>How-might-we framing</strong>Find the issue, notify on failure, resolve faster, and, most ambitiously, let authors troubleshoot by themselves.</figcaption>
+        </figure>
+      </div>
+
+      <p class="section-lede">Two personas anchored the "who." Both non-technical; both dependent on Support.</p>
+
+      <div class="pair pair--doc">
+        <figure>
+          <img src="../images/diagnostics/persona-muriel.png"
+               alt="Muriel persona: L&amp;D trainer at a large financial and insurance company." loading="lazy" />
+          <figcaption><strong>Muriel · L&amp;D Trainer</strong>Non-technical. Wants to <strong>Create and manage content</strong>. Anything more is friction she resents.</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/diagnostics/persona-efraim.png"
+               alt="Efraim persona: tech transformation product manager in Oil &amp; Gas." loading="lazy" />
+          <figcaption><strong>Efraim · Information Developer</strong>Also non-technical. Manages content across many pages. Frustration compounds when he has to rely on Support.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         02 · OWNERSHIP
+         ===================================================== -->
+    <section class="section" data-motion="section" id="research">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">02</span>· Ownership and research</span>
+        <h2>Who owns which issue?</h2>
+        <p class="section-lede">Support knew the answer better than anyone. Their classification was the load-bearing part of discovery.</p>
+      </header>
+
+        <div class="split split--open">
+          <div class="bucket bucket--fixable">
+          <span class="bucket-tag">Bucket 01 · Author-fixable</span>
+          <span class="bucket-title">Surface with a fix path.</span>
+          <ul>
+            <li>Display rule mismatch (segment, URL, device)</li>
+            <li>Wrong or missing element selector</li>
+            <li>Content in wrong workflow stage</li>
+            <li>Occurrence rules not set correctly</li>
+            <li>Content published to the wrong page</li>
+          </ul>
+        </div>
+        <div class="bucket">
+          <span class="bucket-tag">Bucket 02 · Technical</span>
+          <span class="bucket-title">Smooth the escalation.</span>
+          <ul>
+            <li>Browser extension version mismatches</li>
+            <li>Customer-side DOM structure changes</li>
+            <li>Iframe and cross-origin failures</li>
+            <li>SPA route changes breaking anchors</li>
+            <li>CSP restrictions blocking Whatfix runtime</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="doc-grid">
+        <figure class="doc-figure">
+          <img src="../images/diagnostics/research-nps-2024.png"
+               alt="NPS verbatims Q1 2024, grouped by flow failure, smart detect, and other themes." loading="lazy" />
+          <figcaption><strong>NPS verbatims · Q1 2024</strong>Clustered into flow-failure, smart-detect, and other themes: the raw material Support translated into the ownership buckets.</figcaption>
+        </figure>
+        <figure class="doc-figure">
+          <img src="../images/diagnostics/research-nps-2023.png"
+               alt="NPS verbatims Q3 2023, earlier signal on troubleshooting pain." loading="lazy" />
+          <figcaption><strong>NPS verbatims · Q3 2023</strong>The earlier signal: authors asking for review mechanisms, clearer failure reasons, and less reliance on email.</figcaption>
+        </figure>
+      </div>
+
+      <div class="study-insights">
+        <div class="study-insight">
+          <p>Support wasn't a downstream stakeholder to inform; they were the discovery partner. They'd resolved every one of the 182 monthly tickets themselves and knew, ticket by ticket, whether the author could have fixed it if they'd been shown how, or whether it genuinely needed engineering. The design's whole audience question, <strong>Who is Diagnostics for?</strong>, was answered in their room, not mine.</p>
+        </div>
+        <div class="study-insight">
+          <p>The design principle: handle both buckets in the same panel. Show authors what they can fix, with the fix path visible. Show them what they can't, with a smooth escalation attached. Neither should feel like a dead end. <strong>Bucket 1 was the design job. Bucket 2 was the honesty job.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         03 · CONSTRAINT
+         ===================================================== -->
+    <section class="section" data-motion="section" id="constraint">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">03</span>· Constraint</span>
+        <h2>One panel. Three detection strategies.</h2>
+        <p class="section-lede">Diagnostics can't work the same way for every content type. The five types don't behave the same way. That was the constraint that shaped the whole panel.</p>
+      </header>
+
+      <div class="strategies">
+        <div class="strategy">
+          <div class="strategy-method">Play-based</div>
+          <div class="strategy-content">
+            <h4>Flows</h4>
+            <p>A Flow is a sequence of steps. A broken step only reveals itself when the flow is triggered by an author or user action.</p>
+          </div>
+        </div>
+        <div class="strategy">
+          <div class="strategy-method">Upfront</div>
+          <div class="strategy-content">
+            <h4>Smart Tips + Beacons + Launchers</h4>
+            <p>Render on page load based on display rules. Detection can happen the moment the tab opens.</p>
+          </div>
+        </div>
+        <div class="strategy">
+          <div class="strategy-method">With care</div>
+          <div class="strategy-content">
+            <h4>Pop-ups</h4>
+            <p>A Pop-up with <code>occurrence: once</code> won't re-fire on re-visit. Flagging that as a "failure" would misdiagnose correct behaviour.</p>
+          </div>
+        </div>
+        <div class="strategy">
+          <div class="strategy-method">Upfront</div>
+          <div class="strategy-content">
+            <h4>Content on this URL</h4>
+            <p>Whether content is scoped to the current URL is deterministic. Non-applicable content moves to <strong>Not on this page</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         04 · CUTS
+         ===================================================== -->
+    <section class="section" data-motion="section" id="cuts">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">04</span>· Removed</span>
+        <h2>Two ideas we cut.</h2>
+        <p class="section-lede">Design taste doesn't cut ideas. Engineering constraints do, when you name them out loud.</p>
+      </header>
+
+      <div class="cuts cuts--stack">
+        <article class="cut cut--visual">
+          <p class="cut-idea">A global list of all content with issues attached.</p>
+          <figure class="doc-figure doc-figure--wide cut__figure">
+            <img
+              src="../images/diagnostics/cut-global-list.png"
+              data-full-src="../images/diagnostics/cut-global-list.png"
+              alt="Whatfix DAP Content view in Production with a failure report panel open for a selected flow."
+              loading="lazy"
+            />
+            <figcaption><strong>Global list · Dashboard</strong>Content management and failure analytics in the main product, not on the target URL where authors actually debug.</figcaption>
+          </figure>
+          <p class="cut-reason">Content is contextual to a URL. An author needs to know <strong>Where</strong> the issue lives, not just that it exists. A global list without URL context turns diagnosis into a scavenger hunt.</p>
+        </article>
+        <article class="cut cut--visual">
+          <p class="cut-idea">Manage content reconfigured as preview mode.</p>
+          <figure class="doc-figure doc-figure--wide cut__figure">
+            <img
+              src="../images/diagnostics/cut-manage-preview-mode.png"
+              data-full-src="../images/diagnostics/cut-manage-preview-mode.png"
+              alt="Manage content panel comparing the default list view with preview mode toggled on, surfacing page-specific troubleshoot content."
+              loading="lazy"
+            />
+            <figcaption><strong>Manage · Preview mode</strong>Repurposing the management list as a page-scoped troubleshoot view, before Diagnostics became a tab inside Preview Mode.</figcaption>
+          </figure>
+          <p class="cut-reason">Collapses two jobs into one toggle. Authors still need a stable list for bulk moves and folder hygiene; <strong>Diagnosis belongs in Preview Mode, not by repurposing Manage.</strong></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         05 · DESIGN
+         ===================================================== -->
+    <section class="section" data-motion="section" id="design">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">05</span>· Design</span>
+        <h2>A tab inside Preview Mode.</h2>
+        <p class="section-lede">Preview Mode was the surface. The next question was the container shape: modal, overlay, route, or tab. Tab won on four criteria.</p>
+      </header>
+
+      <figure class="doc-figure">
+        <img src="../images/diagnostics/design-crazy8.png"
+             alt="Crazy-8 ideation: eight quick directions for surfacing content failures." loading="lazy" />
+        <figcaption><strong>Divergence · Crazy-8</strong>Eight fast directions before converging, from a passive preview widget to a dashboard notification panel. The winning idea: <strong>Show status while previewing</strong>.</figcaption>
+      </figure>
+
+      <div class="principles principles--stack">
+        <div class="principle">
+          <span class="num">01</span>
+          <p><strong>Diagnostics is a tab, not a separate surface.</strong> Enabling Preview Mode auto-navigates the author there. <strong>If you're previewing, you might be checking for issues.</strong></p>
+        </div>
+        <div class="principle">
+          <span class="num">02</span>
+          <p><strong>Categorized by content type, same as creation.</strong> Flows, Smart Tips, Beacons, Launchers, Pop-ups, using the same taxonomy authors already knew from building. No new mental model.</p>
+        </div>
+        <div class="principle">
+          <span class="num">03</span>
+          <p><strong>Applicable content shows on the page; the rest goes to Not on this page.</strong> Makes URL scoping explicit and answers Efraim's coverage question at the same time.</p>
+        </div>
+        <div class="principle">
+          <span class="num">04</span>
+          <p><strong>Search by content type and issue type.</strong> A power-user path for authors managing many pieces at once.</p>
+        </div>
+        <div class="principle">
+          <span class="num">05</span>
+          <p><strong>Notification banner for the minimized case.</strong> If Studio is minimized while previewing and a flow step fails, a banner surfaces at the top of the customer's browser. One click restores Studio to the Diagnostics tab.</p>
+        </div>
+      </div>
+
+      <div class="doc-grid">
+      <figure class="doc-figure is-dark">
+        <img src="../images/diagnostics/design-panel-frames.png"
+             alt="Debugging panel design frames: import & test, search content, imported content, and step-level report." loading="lazy" />
+        <figcaption><strong>Early wireframes · Key frames</strong>Pre-ship exploration frames: <strong>Import &amp; test</strong>, <strong>Search</strong>, imported content state, and step-level report, before the shipped UI above.</figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../images/diagnostics/design-system-map.png"
+             alt="Diagnostics system design: Studio, Preview, and Dashboard entry points converging on one debugging surface." loading="lazy" />
+        <figcaption><strong>System design · One debugging surface</strong>Three entry points (Studio, Preview, and the Dashboard) converge on a single debugging surface, with the author, support, and record-report paths mapped underneath. <strong>One surface, three ways in.</strong></figcaption>
+      </figure>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         06 · PATHS
+         ===================================================== -->
+    <section class="section" data-motion="section" id="paths">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">06</span>· Happy paths</span>
+        <h2>Two happy paths, one panel.</h2>
+        <p class="section-lede">Different content, different entry. Same fix affordance underneath.</p>
+      </header>
+
+        <div class="paths paths--flow">
+        <div class="path">
+          <h3>Fixing a Flow step</h3>
+          <span class="path-method">Play-based</span>
+          <ol>
+            <li>Create a flow.</li>
+            <li>Enable Preview Mode.</li>
+            <li>Play the flow.</li>
+            <li><strong>Step 3 fails.</strong></li>
+            <li>Open Diagnostics.</li>
+            <li>Read the issue in creator language.</li>
+            <li>Fix the step (if author-fixable).</li>
+            <li>Save the flow.</li>
+            <li>Re-preview to verify green.</li>
+          </ol>
+        </div>
+        <div class="path">
+          <h3>Fixing a Smart Tip</h3>
+          <span class="path-method">Upfront</span>
+          <ol>
+            <li>Create Smart Tips.</li>
+            <li>Open Diagnostics.</li>
+            <li>Open the Smart Tips accordion.</li>
+            <li><strong>Failed ones surfaced upfront.</strong></li>
+            <li>Open one.</li>
+            <li>Read the issue in creator language.</li>
+            <li>Fix.</li>
+            <li>Save.</li>
+            <li>Re-preview to verify green.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="study-screens" aria-label="Shipped Diagnostics UI walkthrough">
+        <p class="study-screens__lede">Four shipped screens, in the order an author experiences them: onboarded into preview-mode diagnostics, scan the page inventory, then drill into a failure and a success on the same Pop-up category.</p>
+
+        <figure class="doc-figure study-screens__shot study-screens__shot--duo">
+          <div class="study-screens__pair">
+            <div class="study-screens__canvas">
+              <img
+                class="study-screens__panel"
+                src="../images/work/design-home-tooltip.png"
+                data-full-src="../images/work/design-home-tooltip.png"
+                alt="Diagnostics panel home with a green onboarding tooltip anchored to the Diagnostics tab, announcing diagnose-while-previewing."
+                loading="lazy"
+              />
+            </div>
+            <div class="study-screens__canvas">
+              <img
+                class="study-screens__panel"
+                src="../images/work/design-home-no-toast.png"
+                data-full-src="../images/work/design-home-no-toast.png"
+                alt="Diagnostics panel home after dismissing the onboarding tooltip, with content-type status counts and no toast overlay."
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <figcaption><strong>Home · First visit</strong>Enabling Preview Mode for the first time surfaces a one-time tooltip on the Diagnostics tab: <strong>You can now diagnose content while preview mode is enabled.</strong> It anchors to the tab icon so authors connect the new capability to where they already look when previewing.</figcaption>
+        </figure>
+
+        <div class="prose study-screens__bridge">
+          <p>Dismiss the tooltip and the panel settles into the standard home. Content types match creation taxonomy (Flows, Smart Tips, Beacons, Launchers, Pop-ups) with pass/fail counts visible before an author opens a single accordion. No new mental model; just status at a glance.</p>
+        </div>
+
+        <figure class="doc-figure study-screens__shot">
+          <div class="study-screens__canvas">
+          <img
+            src="../images/work/design-content-list.png"
+            data-full-src="../images/work/design-content-list.png"
+            alt="Diagnostics panel listing Pop-ups on the current page: one displayed, two not displayed, with On this page and Not on this page tabs."
+            loading="lazy"
+          />
+          </div>
+          <figcaption><strong>List of content · Pop-ups on this page</strong>The settled home expands into an inventory. <strong>On this page</strong> and <strong>Not on this page</strong> separate URL-scoped content from everything else. Inside Pop-ups: <strong>Release notes</strong> is displayed; <strong>Welcome</strong> and <strong>Holiday 2025</strong> are not, each with a <strong>Diagnose</strong> affordance.</figcaption>
+        </figure>
+
+        <figure class="doc-figure doc-figure--wide study-screens__shot">
+          <div class="study-screens__canvas study-screens__canvas--wide">
+          <img
+            src="../images/work/design-popup-failed.png"
+            data-full-src="../images/work/design-popup-failed.png"
+            alt="Two-step flow: Pop-up list with Welcome pop up marked Not displayed, then detail view showing visibility rules failed with reference code VR-001."
+            loading="lazy"
+          />
+          </div>
+          <figcaption><strong>Failed Pop-up · Author-fixable</strong>From the list, <strong>Diagnose</strong> on <strong>Welcome pop up</strong> opens the failure detail: visibility rules failed (VR-001), with creator-language explanation and expandable sections for when, where, and who. Bucket 1: the author can fix this without Support.</figcaption>
+        </figure>
+
+        <figure class="doc-figure doc-figure--wide study-screens__shot">
+          <div class="study-screens__canvas study-screens__canvas--wide">
+          <img
+            src="../images/work/design-popup-displayed.png"
+            data-full-src="../images/work/design-popup-displayed.png"
+            alt="Two-step flow: Pop-up list with Release notes pop up marked Displayed, then detail view confirming display order and count."
+            loading="lazy"
+          />
+          </div>
+          <figcaption><strong>Displayed Pop-up · Working as intended</strong>The same list path for <strong>Release notes pop up</strong>, but the outcome is green: displayed three times, first in order. Pop-ups compete for precedence on a page, so authors need to see <strong>Why</strong> one fired and another didn't, not just that it did.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         07 · CHALLENGES
+         ===================================================== -->
+    <section class="section" data-motion="section" id="challenges">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">07</span>· Challenges</span>
+        <h2>What made this hard.</h2>
+        <p class="section-lede">Three constraints visible from week one. Each shaped a design decision downstream.</p>
+      </header>
+
+      <div class="principles principles--stack">
+        <div class="principle">
+          <span class="num">01</span>
+          <p><strong>Enterprise-customer recruiting was slow.</strong> 5–7 users per method was the ceiling, not the target. Most testing went to Muriel-side. Efraim's coverage view, a Phase 2 candidate, stayed thin on validation.</p>
+        </div>
+        <div class="principle">
+          <span class="num">02</span>
+          <p><strong>Engineering was split across two projects.</strong> Not all engineers attended every design review. The content-type strategy constraint surfaced from engineers who joined late; if it had surfaced in week two instead of week six, we would have saved a full design cycle.</p>
+        </div>
+        <div class="principle">
+          <span class="num">03</span>
+          <p><strong>The design-system pod was mid-overhaul.</strong> They couldn't absorb a five-state status pill contribution on our timeline. The workaround was tactical; the DS pod shipped the proper primitive two months after launch.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         08 · RECEIPTS
+         ===================================================== -->
+    <section class="section" data-motion="section" id="receipts">
+      <header class="section-header section-header--wide">
+        <span class="section-tag"><span class="num">08</span>· Receipts</span>
+        <h2>What the first two quarters said.</h2>
+      </header>
+
+      <div class="receipts receipts--impact">
+        <div class="receipt">
+          <div class="figure">−35%</div>
+          <span class="label"><strong>Support tickets reduced</strong> in the first quarter after launch. Held through Q2.</span>
+        </div>
+        <div class="receipt">
+          <div class="figure">−85%</div>
+          <span class="label"><strong>Root cause analysis time reduced.</strong> Support spent a fraction of the time finding the problem after launch.</span>
+        </div>
+        <div class="receipt">
+          <div class="figure">82</div>
+          <span class="label"><strong>SUS score</strong> from pre-launch usability testing.</span>
+        </div>
+      </div>
+
+      <section class="study-testimonial study-testimonial--visual" data-motion="section" aria-label="Team testimony">
+      <figure class="doc-figure">
+        <img
+          src="../images/diagnostics/testimonial-slack.png?v=1"
+          alt="Slack cheers-mate message from the IDG team praising Whatfix Diagnostics for helping troubleshoot content without technical expertise."
+          loading="lazy"
+        />
+        <figcaption><strong>Internal team · Slack</strong>Authors could tell immediately whether an issue needed Support or could be fixed in place. Diagnostics became part of the daily content workflow.</figcaption>
+      </figure>
+      <p class="study-testimonial__lede">Six weeks after launch, the internal content team posted this in Slack. No prompt. No survey. Just a cheers thread that named the workflow change out loud.</p>
+      </section>
+
+      <div class="prose prose--follow">
+        <p>The Support team's own read was clearer than any dashboard. Their per-ticket RCA time dropped. The diagnosis often arrived pre-attached to the escalation, so they were starting mid-investigation rather than at the top. Bucket 1 issues mostly stopped arriving. <strong>"Support went back to doing engineering work instead of translation work"</strong>, the appreciation voiced in the retro.</p>
+        <p>Two quarters isn't enough to call the drop durable. I'd want four before treating it as a baseline. The Support team outcome is the one I trust most.</p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         09 · 2026 LENS
+         ===================================================== -->
+    <section class="section" data-motion="section" id="lens">
+      <div class="lens-2026">
+        <div class="lens-2026__intro">
+          <span class="section-tag"><span class="num">09</span>· 2026 lens</span>
+          <h2>What I'd unship, and what I'd design instead today.</h2>
+          <p class="lens-2026__lede">The 2025 product is a tab authors open. In 2026, that shape is no longer the right one.</p>
+        </div>
+
+        <div class="principles principles--stack principles--compact">
+          <div class="principle">
+            <span class="num">01</span>
+            <p><strong>Auto-navigation to Diagnostics on Preview Mode enable</strong> was right most of the time, wrong when the author is previewing routine changes. Should defer to a discoverable badge on first visit, auto-nav on second.</p>
+          </div>
+          <div class="principle">
+            <span class="num">02</span>
+            <p><strong>The pill workaround</strong> was the right tactical move, wrong long-term primitive. Co-design with DS earlier next time.</p>
+          </div>
+          <div class="principle">
+            <span class="num">03</span>
+            <p><strong>The Pop-up occurrence-once handling</strong> is currently silent. Better: surface an <strong>Occurrence-satisfied</strong> state so authors understand why the pop-up isn't firing without misdiagnosing it.</p>
+          </div>
+        </div>
+
+        <div class="lens-shifts lens-shifts--cards">
+          <div class="lens-shift">
+            <div class="from-to"><span class="from">On-demand</span><span class="to">Continuous</span></div>
+            <p>Background watcher. The panel opens because the system invited it, not because the author suspected.</p>
+          </div>
+          <div class="lens-shift">
+            <div class="from-to"><span class="from">Navigate to tab</span><span class="to">Conversational</span></div>
+            <p><strong>Why isn't my onboarding showing for new sales reps?</strong> The tab becomes one surface for the agent, not the product.</p>
+          </div>
+          <div class="lens-shift">
+            <div class="from-to"><span class="from">Per-item</span><span class="to">Cross-content</span></div>
+            <p>Reason across the journey. <strong>This Flow fails because the Smart Tip before it stopped firing last week.</strong></p>
+          </div>
+          <div class="lens-shift">
+            <div class="from-to"><span class="from">Bucket 2 escalates</span><span class="to">Diagnosis is the ticket</span></div>
+            <p>Support reads the agent's analysis instead of running their own. Technical issues escalate <strong>With the RCA already done</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="closing-note">
+      Diagnostics taught me one thing that travelled to every project after: <strong>Let the engineering constraint be the design brief</strong>. The three detection strategies weren't the enemy of the design. They were the shape of it.
+    </p>
+
+    <div class="nextstudy" aria-label="Next case study">
+      <article class="nextstudy-card">
+        <div class="nextstudy-card__main">
+          <header class="nextstudy-card__brand">
+            <span class="nextstudy-card__label">Next case study</span>
+            <span class="nextstudy-card__sep" aria-hidden="true">·</span>
+            <span class="nextstudy-card__meta">Whatfix · 2025</span>
+          </header>
+          <h2 class="nextstudy-card__title">Studio: reimagining Whatfix content creation</h2>
+          <p class="nextstudy-card__dek">Create flows, pop-ups, tooltips, beacons and launchers from one guided surface.</p>
+        </div>
+        <div class="nextstudy-card__action">
+          <a class="case-card__cta case-card__cta--tertiary nextstudy-card__cta" href="studio-redesign.html" aria-label="Read Studio case study">
+            <span class="case-card__cta-bg" aria-hidden="true"></span>
+            <span class="case-card__cta-text case-card__cta-text--default">
+              <span>Read case study</span>
+              <svg class="case-card__cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
+      </article>
+    </div>
+
+  </article>
+
+  </main>
+
+  </div>
+  <span class="grid-dot grid-dot--bl" aria-hidden="true"></span>
+  <span class="grid-dot grid-dot--br" aria-hidden="true"></span>
+</div>
+
+<footer class="sitefooter sitefooter--closing" aria-label="Contact and links">
+  <div class="sitefooter__stage">
+    <div class="sitefooter__top">
+      <p class="sitefooter__lede">Working on something that needs more than a quick fix?<br>I read every email.</p>
+      <button
+        type="button"
+        class="sitefooter__copy-email"
+        data-copy-email="vkhithesh@gmail.com"
+        aria-label="Copy email vkhithesh@gmail.com to clipboard"
+      >
+        <span class="sitefooter__copy-email-text">vkhithesh@gmail.com</span>
+        <span class="sitefooter__copy-email-hint" data-copy-hint>Click to copy</span>
+      </button>
+    </div>
+    <nav class="sitefooter__row" aria-label="Links">
+      <a href="https://www.linkedin.com/in/hithesh-vk-88b6b516a/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a>
+      <a href="https://dribbble.com/mr_we_kay" target="_blank" rel="noopener noreferrer">Dribbble<span class="visually-hidden"> (opens in new tab)</span></a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram<span class="visually-hidden"> (opens in new tab)</span></a>
+      <a href="../photography.html">Photography</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../scripts/smooth-scroll.bundle.js?v=5"></script>
+<script src="../scripts/nav-scroll.js?v=4"></script>
+<script type="module" src="../scripts/motion-study.js?v=3"></script>
+<script src="../scripts/study-toc.js?v=2"></script>
+<script src="../scripts/study-lightbox.js?v=9"></script>
+<script defer src="../scripts/copy-email.js?v=1"></script>
+
+</body>
+</html>

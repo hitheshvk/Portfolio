@@ -1,0 +1,18 @@
+{
+  "name": "skill-installation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:scroll": "esbuild scripts/smooth-scroll/index.ts --bundle --format=iife --outfile=scripts/smooth-scroll.bundle.js --minify",
+    "build:cursor": "esbuild scripts/hero-blob-cursor.js --bundle --format=iife --outfile=scripts/hero-blob-cursor.bundle.js --minify",
+    "build": "npm run build:scroll && npm run build:cursor"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "typescript": "^5.8.2"
+  }
+}
