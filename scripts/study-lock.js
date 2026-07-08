@@ -5,7 +5,7 @@
   const studyId = boundary.dataset.studyId || "studio-redesign";
   const storageKey = `study-unlock:${studyId}`;
   const passcodes = {
-    "studio-redesign": "2025",
+    "studio-redesign": "8904",
   };
 
   const gate = document.getElementById("study-lock-gate");
@@ -13,21 +13,19 @@
   const openBtn = document.getElementById("study-lock-open");
   const modal = document.getElementById("study-unlock-modal");
   const form = document.getElementById("study-unlock-form");
-  const input = document.getElementById("study-unlock-code");
+  const digitInputs = Array.from(document.querySelectorAll(".study-unlock-modal__digit"));
   const error = document.getElementById("study-unlock-error");
   const cancelBtn = document.getElementById("study-unlock-cancel");
   const backdrop = modal?.querySelector(".study-unlock-modal__backdrop");
 
-  if (!gate || !protectedContent || !openBtn || !modal || !form || !input) return;
+  if (!gate || !protectedContent || !openBtn || !modal || !form || digitInputs.length !== 4) return;
 
   let lastFocus = null;
 
-  function isUnlocked() {
-    try {
-      return sessionStorage.getItem(storageKey) === "1";
-    } catch {
-      return false;
-    }
+  try {
+    sessionStorage.removeItem(storageKey);
+  } catch {
+    /* ignore */
   }
 
   function setUnlocked(unlocked) {
@@ -39,20 +37,21 @@
     if (unlocked) {
       protectedContent.removeAttribute("inert");
       protectedContent.removeAttribute("aria-hidden");
-      try {
-        sessionStorage.setItem(storageKey, "1");
-      } catch {
-        /* ignore */
-      }
     } else {
       protectedContent.setAttribute("inert", "");
       protectedContent.setAttribute("aria-hidden", "true");
-      try {
-        sessionStorage.removeItem(storageKey);
-      } catch {
-        /* ignore */
-      }
     }
+  }
+
+  function getCode() {
+    return digitInputs.map((input) => input.value).join("");
+  }
+
+  function clearDigits() {
+    digitInputs.forEach((input) => {
+      input.value = "";
+      input.classList.remove("is-error");
+    });
   }
 
   function openModal() {
@@ -60,9 +59,9 @@
     modal.hidden = false;
     requestAnimationFrame(() => {
       modal.classList.add("is-open");
-      input.value = "";
+      clearDigits();
       error.hidden = true;
-      input.focus();
+      digitInputs[0].focus();
     });
     document.body.classList.add("study-unlock-modal-open");
   }
@@ -82,28 +81,69 @@
 
   function showError() {
     error.hidden = false;
-    input.classList.add("is-error");
-    input.focus();
-    input.select();
+    digitInputs.forEach((input) => input.classList.add("is-error"));
+    digitInputs[0].focus();
+    digitInputs[0].select();
   }
 
   function clearError() {
     error.hidden = true;
-    input.classList.remove("is-error");
+    digitInputs.forEach((input) => input.classList.remove("is-error"));
+  }
+
+  function fillDigits(value) {
+    const digits = value.replace(/\D/g, "").slice(0, 4);
+    digitInputs.forEach((input, index) => {
+      input.value = digits[index] || "";
+    });
+    const focusIndex = Math.min(digits.length, digitInputs.length - 1);
+    digitInputs[focusIndex].focus();
   }
 
   openBtn.addEventListener("click", openModal);
   cancelBtn?.addEventListener("click", closeModal);
   backdrop?.addEventListener("click", closeModal);
 
-  input.addEventListener("input", () => {
-    input.value = input.value.replace(/\D/g, "").slice(0, 4);
-    clearError();
+  digitInputs.forEach((input, index) => {
+    input.addEventListener("input", () => {
+      input.value = input.value.replace(/\D/g, "").slice(-1);
+      clearError();
+      if (input.value && index < digitInputs.length - 1) {
+        digitInputs[index + 1].focus();
+      }
+    });
+
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Backspace" && !input.value && index > 0) {
+        digitInputs[index - 1].focus();
+        digitInputs[index - 1].value = "";
+      }
+
+      if (event.key === "ArrowLeft" && index > 0) {
+        event.preventDefault();
+        digitInputs[index - 1].focus();
+      }
+
+      if (event.key === "ArrowRight" && index < digitInputs.length - 1) {
+        event.preventDefault();
+        digitInputs[index + 1].focus();
+      }
+    });
+
+    input.addEventListener("paste", (event) => {
+      event.preventDefault();
+      fillDigits(event.clipboardData?.getData("text") || "");
+      clearError();
+    });
+
+    input.addEventListener("focus", () => {
+      input.select();
+    });
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    const code = input.value.trim();
+    const code = getCode();
     if (code.length !== 4) {
       showError();
       return;
@@ -125,5 +165,5 @@
     }
   });
 
-  setUnlocked(isUnlocked());
+  setUnlocked(false);
 })();

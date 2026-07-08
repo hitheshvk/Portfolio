@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="icon" href="../images/brand/h-mark.png" type="image/png" />
   <link rel="stylesheet" href="../styles.css?v=garri125" />
-  <link rel="stylesheet" href="../styles/study-diagnostics.css?v=52" />
+  <link rel="stylesheet" href="../styles/study-diagnostics.css?v=56" />
   <link rel="stylesheet" href="../styles/page-loader.css?v=6" />
   <style>
     html.is-page-loading { overflow: hidden; background: #fdfcfc; }
@@ -34,18 +34,7 @@
     (function(){try{if(sessionStorage.getItem("page-loader-nav")==="1"||document.documentElement.classList.contains("is-page-loading")){document.documentElement.classList.add("is-page-loading");}}catch(e){}})();
   </script>
 </head>
-<body class="study study--studio">
-<script>
-  (function () {
-    try {
-      var unlocked = sessionStorage.getItem("study-unlock:studio-redesign") === "1";
-      document.body.classList.add(unlocked ? "study--unlocked" : "study--locked");
-    } catch (e) {
-      document.body.classList.add("study--locked");
-    }
-  })();
-</script>
-
+<body class="study study--studio study--locked">
 <script src="../scripts/page-loader.js?v=8"></script>
 
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -186,6 +175,31 @@
         <h2>Five tabs to finish one job.</h2>
         <p class="section-lede">Customer feedback was consistent before we had a solution shape: authors lacked confidence because the workflow had too many front doors.</p>
       </header>
+    </section>
+
+    <div class="study-lock-boundary" data-study-id="studio-redesign">
+      <div class="study-lock-gate" id="study-lock-gate">
+        <div class="study-lock-gate__panel">
+          <div class="study-lock-gate__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <p class="study-lock-gate__eyebrow">NDA protected</p>
+          <h3 class="study-lock-gate__title">Unlock the full case study</h3>
+          <p class="study-lock-gate__lede">The rest of this case study includes shipped UI, research artifacts, and metrics under confidentiality.</p>
+          <button type="button" class="case-card__cta study-lock-gate__btn" id="study-lock-open" aria-haspopup="dialog">
+            <span class="case-card__cta-bg" aria-hidden="true"></span>
+            <span class="case-card__cta-text case-card__cta-text--default">
+              <svg class="case-card__cta-icon study-lock-gate__btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>Unlock case study</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="study-protected-content" id="study-protected-content" inert aria-hidden="true">
 
       <div class="prose">
         <p>When I joined the panel workstream, the creation extension was technically strong and strategically narrow, but only for creation. Preview, stage changes, analyze performance, bulk-edit tags, or move content between folders meant opening the dashboard in another tab, finding the same asset again, and hoping context survived the jump.</p>
@@ -232,25 +246,6 @@
           <figcaption><strong>Information Developer</strong>Owns support content across many pages. Loses time every time folder management pulls them back to the dashboard.</figcaption>
         </figure>
       </div>
-    </section>
-
-    <div class="study-lock-boundary" data-study-id="studio-redesign">
-      <div class="study-lock-gate" id="study-lock-gate">
-        <div class="study-lock-gate__fade" aria-hidden="true"></div>
-        <div class="study-lock-gate__panel">
-          <p class="study-lock-gate__eyebrow">NDA protected</p>
-          <p class="study-lock-gate__lede">The rest of this case study includes shipped UI, research artifacts, and metrics under confidentiality.</p>
-          <button type="button" class="case-card__cta case-card__cta--tertiary study-lock-gate__btn" id="study-lock-open" aria-haspopup="dialog">
-            <span class="case-card__cta-bg" aria-hidden="true"></span>
-            <span class="case-card__cta-text case-card__cta-text--default">
-              <span>Unlock case study</span>
-              <svg class="case-card__cta-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </span>
-          </button>
-        </div>
-      </div>
-
-      <div class="study-protected-content" id="study-protected-content" inert aria-hidden="true">
 
     <section class="section" data-motion="section" id="inquiry">
       <header class="section-header section-header--wide">
@@ -604,41 +599,35 @@
 <div class="study-unlock-modal" id="study-unlock-modal" role="dialog" aria-modal="true" aria-labelledby="study-unlock-title" hidden>
   <button type="button" class="study-unlock-modal__backdrop" aria-label="Close password dialog"></button>
   <div class="study-unlock-modal__panel">
+    <div class="study-unlock-modal__icon" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    </div>
     <h2 class="study-unlock-modal__title" id="study-unlock-title">Unlock case study</h2>
     <p class="study-unlock-modal__lede">Enter the 4-digit access code to view NDA-protected content.</p>
     <form class="study-unlock-modal__form" id="study-unlock-form">
-      <label class="study-unlock-modal__label" for="study-unlock-code">Access code</label>
-      <input
-        class="study-unlock-modal__input"
-        id="study-unlock-code"
-        name="code"
-        type="password"
-        inputmode="numeric"
-        pattern="[0-9]{4}"
-        maxlength="4"
-        minlength="4"
-        autocomplete="off"
-        autocorrect="off"
-        spellcheck="false"
-        required
-        aria-describedby="study-unlock-error"
-        placeholder="••••"
-      />
-      <p class="study-unlock-modal__error" id="study-unlock-error" role="alert" hidden>Incorrect code. Try again.</p>
-      <div class="study-unlock-modal__actions">
-        <button type="button" class="study-unlock-modal__cancel" id="study-unlock-cancel">Cancel</button>
-        <button type="submit" class="case-card__cta case-card__cta--tertiary study-unlock-modal__submit">
-          <span class="case-card__cta-bg" aria-hidden="true"></span>
-          <span class="case-card__cta-text case-card__cta-text--default">
-            <span>Unlock</span>
-          </span>
-        </button>
+      <div class="study-unlock-modal__pin" role="group" aria-label="4-digit access code">
+        <input class="study-unlock-modal__digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="one-time-code" aria-label="Digit 1" data-index="0" />
+        <input class="study-unlock-modal__digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 2" data-index="1" />
+        <input class="study-unlock-modal__digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 3" data-index="2" />
+        <input class="study-unlock-modal__digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="Digit 4" data-index="3" />
       </div>
+      <p class="study-unlock-modal__error" id="study-unlock-error" role="alert" hidden>Incorrect code. Try again.</p>
+      <button type="submit" class="case-card__cta study-unlock-modal__submit">
+        <span class="case-card__cta-bg" aria-hidden="true"></span>
+        <span class="case-card__cta-text case-card__cta-text--default">
+          <svg class="case-card__cta-icon study-unlock-modal__submit-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>Unlock</span>
+        </span>
+      </button>
+      <button type="button" class="study-unlock-modal__cancel" id="study-unlock-cancel">Cancel</button>
     </form>
   </div>
 </div>
 
-<script src="../scripts/study-lock.js?v=1"></script>
+<script src="../scripts/study-lock.js?v=5"></script>
 <script src="../scripts/smooth-scroll.bundle.js?v=5"></script>
 <script src="../scripts/nav-scroll.js?v=4"></script>
 <script type="module" src="../scripts/motion-study.js?v=3"></script>
